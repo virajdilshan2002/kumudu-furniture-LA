@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootNode" maxHeight="768.0" maxWidth="1100.0" minHeight="768.0" minWidth="1100.0" prefHeight="768.0" prefWidth="1100.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.kumudufurniture.controller.DashboardFormController">
+<AnchorPane fx:id="rootNode" maxHeight="768.0" maxWidth="1100.0" minHeight="768.0" minWidth="1100.0" prefHeight="768.0" prefWidth="1100.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pos.controller.DashboardFormController">
    <children>
       <Pane layoutY="54.0" maxHeight="713.0" maxWidth="1100.0" minHeight="713.0" minWidth="1100.0" prefHeight="713.0" prefWidth="1100.0" style="-fx-background-color: #f5f5f5;">
          <children>
