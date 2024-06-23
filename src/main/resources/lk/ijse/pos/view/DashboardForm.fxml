@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" maxHeight="768.0" maxWidth="1100.0" minHeight="768.0" minWidth="1100.0" prefHeight="768.0" prefWidth="1100.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.kumudufurniture.controller.DashboardFormController">
+   <children>
+      <Pane layoutY="54.0" maxHeight="713.0" maxWidth="1100.0" minHeight="713.0" minWidth="1100.0" prefHeight="713.0" prefWidth="1100.0" style="-fx-background-color: #f5f5f5;">
+         <children>
+            <ImageView fitHeight="268.0" fitWidth="269.0" layoutX="798.0" layoutY="289.0" opacity="0.53" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asset/logo/cabinet.png" />
+               </image>
+               <effect>
+                  <Reflection fraction="0.76" topOffset="5.0" topOpacity="0.69" />
+               </effect>
+            </ImageView>
+            <Pane layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="337.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;">
+               <children>
+                  <Label fx:id="lblTime" layoutX="76.0" layoutY="58.0" text="00:00:00" textFill="#454545">
+                     <font>
+                        <Font name="Agency FB" size="70.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblDate" layoutX="111.0" layoutY="142.0" text="0000.00.00" textFill="#454545">
+                     <font>
+                        <Font name="Agency FB" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblDayStatus" layoutX="90.0" layoutY="14.0" text="Good Morning!" textFill="#303030">
+                     <font>
+                        <Font name="Agency FB" size="35.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="255.0" radius="127.0" width="255.0">
+                     <color>
+                        <Color opacity="0.10000000149011612" />
+                     </color>
+                  </DropShadow>
+               </effect></Pane>
+            <Pane layoutX="427.0" layoutY="50.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: ffffff; -fx-background-radius: 30; -fx-border-radius: 5;">
+               <children>
+                  <Label layoutX="88.0" layoutY="30.0" text="CUSTOMERS" textFill="#303030">
+                     <font>
+                        <Font name="Agency FB Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblCustomersCount" alignment="CENTER" layoutX="155.0" layoutY="80.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 100;" text="5" textFill="#454545">
+                     <font>
+                        <Font name="Rockwell" size="40.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="75.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asset/icon/progress.gif" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="255.0" radius="127.0" width="255.0">
+                     <color>
+                        <Color opacity="0.10000000149011612" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Pane>
+            <Pane layoutX="766.0" layoutY="50.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: ffffff; -fx-background-radius: 30; -fx-border-radius: 5;">
+               <children>
+                  <Label layoutX="87.0" layoutY="30.0" text="FURNITURES" textFill="#303030">
+                     <font>
+                        <Font name="Agency FB Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblFurnCount" alignment="CENTER" layoutX="158.0" layoutY="80.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 100;" text="5" textFill="#454545">
+                     <font>
+                        <Font name="Rockwell" size="40.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="73.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asset/icon/sofa.gif" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="255.0" radius="127.0" width="255.0">
+                     <color>
+                        <Color opacity="0.10000000149011612" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Pane>
+            <Group layoutX="410.0" layoutY="475.0">
+               <children>
+                  <JFXButton contentDisplay="TOP" graphicTextGap="10.0" layoutX="15.0" layoutY="17.0" onAction="#btnCompletedOrdersClickOnAction" prefHeight="170.0" prefWidth="300.0" styleClass="dashboardButton" stylesheets="@../asset/css/stylesheet.css" text="COMPLETED ORDERS">
+                     <font>
+                        <Font name="Agency FB Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../asset/icon/success.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblCompletedOrdersCount" alignment="CENTER" layoutX="170.0" prefHeight="56.0" prefWidth="56.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 100;" text="5">
+                                 <font>
+                                    <Font name="Rockwell" size="28.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Group>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </Group>
+            <Group layoutX="410.0" layoutY="274.0">
+               <children>
+                  <JFXButton contentDisplay="TOP" graphicTextGap="10.0" layoutX="15.0" layoutY="17.0" onAction="#btnOrdersToBePaidClickOnAction" prefHeight="170.0" prefWidth="300.0" styleClass="dashboardButton" stylesheets="@../asset/css/stylesheet.css" text="PENDING ORDERS">
+                     <graphic>
+                        <ImageView fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/pending.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Agency FB Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Label fx:id="lblToBePaidOrdersCount" alignment="CENTER" layoutX="278.0" layoutY="10.0" prefHeight="40.0" prefWidth="41.0" style="-fx-background-color: #e60000; -fx-background-radius: 100;" text="5" textFill="WHITE">
+                     <font>
+                        <Font name="Rockwell" size="22.0" />
+                     </font>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.30000001192092896" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Label>
+               </children>
+            </Group>
+            <Pane layoutX="69.0" layoutY="289.0" prefHeight="369.0" prefWidth="300.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;">
+               <children>
+                  <ImageView fitHeight="180.0" fitWidth="176.0" layoutX="-52.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asset/logo/invoice.png" />
+                     </image>
+                     <effect>
+                        <Blend mode="SOFT_LIGHT">
+                           <topInput>
+                              <Reflection />
+                           </topInput>
+                        </Blend>
+                     </effect>
+                  </ImageView>
+                  <JFXButton fx:id="btnGenerate" buttonType="RAISED" layoutX="124.0" layoutY="273.0" onAction="#btnGenerateClickOnAction" prefHeight="50.0" prefWidth="150.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="GENERATE" textFill="#454545">
+                     <font>
+                        <Font name="Agency FB" size="19.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Label layoutX="27.0" layoutY="27.0" text="GENERATE" textFill="#303030">
+                     <font>
+                        <Font name="SansSerif Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="69.0" text="PAID RECEIPT" textFill="#454545">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="txtSearchReceipt" labelFloat="true" layoutX="30.0" layoutY="134.0" onAction="#txtSearchReceiptClickOnAction" onKeyReleased="#txtSearchReceiptOnKeyRelesedAction" prefHeight="40.0" prefWidth="240.0" promptText="Enter Your Receipt ID" />
+               </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="255.0" radius="127.0" width="255.0">
+                     <color>
+                        <Color opacity="0.10000000149011612" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Pane>
+         </children>
+      </Pane>
+      <Label layoutX="15.0" layoutY="12.0" text="DASHBOARD">
+         <font>
+            <Font name="Agency FB Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

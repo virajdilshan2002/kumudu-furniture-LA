@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1100.0" prefHeight="768.0" prefWidth="1100.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.kumudufurniture.controller.CustomerFormController">
+   <children>
+      <Pane layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="713.0" prefWidth="1100.0" style="-fx-background-color: #f5f5f5;">
+         <children>
+            <TableView fx:id="tblCustomer" layoutX="28.0" layoutY="71.0" prefHeight="625.0" prefWidth="744.0" styleClass="table" stylesheets="@../asset/css/stylesheet.css">
+               <columns>
+                  <TableColumn fx:id="colId" prefWidth="97.60000228881836" text="Id" />
+                  <TableColumn fx:id="colName" prefWidth="166.4000701904297" text="Name" />
+                  <TableColumn fx:id="colAddress" minWidth="0.0" prefWidth="187.20001220703125" text="Address" />
+                  <TableColumn fx:id="colContact" minWidth="0.800048828125" prefWidth="172.00006103515625" text="Contact" />
+                  <TableColumn fx:id="colAction" prefWidth="116.79998779296875" text="Action" />
+               </columns>
+            </TableView>
+            <Pane layoutX="786.0" layoutY="17.0" prefHeight="680.0" prefWidth="300.0" style="-fx-background-color: ffffff; -fx-background-radius: 15;">
+               <children>
+                  <ImageView fitHeight="233.0" fitWidth="250.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asset/logo/approved.png" />
+                     </image>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                  </ImageView>
+                  <Pane layoutX="29.0" layoutY="245.0">
+                     <children>
+                        <Label layoutY="18.0" prefHeight="18.0" prefWidth="80.0" text="Customer ID">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblCusId" layoutX="87.0" layoutY="19.0" text="id">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXButton buttonType="RAISED" layoutX="31.0" layoutY="336.0" onAction="#btnSaveClickOnAction" prefHeight="40.0" prefWidth="180.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="SAVE">
+                           <font>
+                              <Font name="Agency FB Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../asset/icon/icons8-add.gif" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXTextField fx:id="txtName" labelFloat="true" layoutX="2.0" layoutY="70.0" onAction="#txtNameClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Customer Name" />
+                        <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="1.0" layoutY="265.0" onAction="#txtContactClickOnAction" onKeyReleased="#txtContactOnKeyRelesed" prefHeight="30.0" prefWidth="240.0" promptText="Contact Number" />
+                        <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="2.0" layoutY="128.0" onAction="#txtAddressClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Address" />
+                        <JFXButton buttonType="RAISED" layoutX="171.0" layoutY="11.0" onAction="#btnClearClickOnAction" prefHeight="30.0" prefWidth="70.0" styleClass="refundButton" stylesheets="@../asset/css/stylesheet.css" text="CLEAR">
+                           <font>
+                              <Font name="Agency FB Bold" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="2.0" layoutY="205.0" onAction="#txtEmailClickOnAction" onKeyReleased="#txtEmailOnKeyRelesedAction" prefHeight="30.0" prefWidth="240.0" promptText="Email address" />
+                        <ImageView fx:id="imgEmailOk" fitHeight="25.0" fitWidth="25.0" layoutX="219.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/check_mark.gif" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgContactOk" fitHeight="25.0" fitWidth="25.0" layoutX="219.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/check_mark.gif" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgContactError" fitHeight="25.0" fitWidth="25.0" layoutX="219.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/warning.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgEmailError" fitHeight="25.0" fitWidth="25.0" layoutX="219.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/warning.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="2.0" layoutY="175.0" opacity="0.8" text="Optional *" textFill="#454545">
+                           <font>
+                              <Font name="SansSerif Italic" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="706.0" layoutY="36.0" prefHeight="28.0" prefWidth="14.0" style="-fx-background-radius: 100;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <TextField fx:id="txtSearch" layoutX="553.0" layoutY="21.0" onAction="#txtSearchClickOnAction" prefHeight="38.0" prefWidth="100.0" promptText="ContactNo" styleClass="text" stylesheets="@../asset/css/text_field.css">
+               <font>
+                  <Font name="Agency FB Bold" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="42.06" radius="22.2825" width="49.07">
+                     <color>
+                        <Color opacity="0.1702127456665039" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
+            <JFXButton buttonType="RAISED" graphicTextGap="5.0" layoutX="662.0" layoutY="21.0" onAction="#btnSearchClickOnAction" prefHeight="38.0" prefWidth="110.0" styleClass="searchButton1" stylesheets="@../asset/css/stylesheet.css" text="S E A R C H" textAlignment="CENTER">
+               <font>
+                  <Font name="Agency FB Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asset/icon/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="493.0" layoutY="17.0" onAction="#btnRefreshClickOnAction" prefHeight="38.0" prefWidth="38.0" style="-fx-background-radius: 100;">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asset/icon/icons8-refresh-96.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.019999999552965164" green="1.0" blue="0.8209136128425598" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color green="0.7434011697769165" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
+            <Label alignment="CENTER" layoutX="28.0" layoutY="30.0" prefHeight="40.0" prefWidth="300.0" styleClass="tblLabel" stylesheets="@../asset/css/stylesheet.css" text="ALL CUSTOMER DETAILS" textFill="#454545">
+               <font>
+                  <Font name="Agency FB Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="15.0" layoutY="12.0" text="CUSTOMER MANAGE" textFill="#454545">
+         <font>
+            <Font name="Agency FB Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

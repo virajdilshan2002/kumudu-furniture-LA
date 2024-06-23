@@ -1,0 +1,232 @@
+.loginButton {
+    -fx-padding: 8 10 10 10;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 20;
+    -fx-border-color:#00e6b8;
+    -fx-border-width:1;
+    -fx-border-radius:20;
+    -fx-text-fill: #000000;
+}
+.loginButton:hover {
+    -fx-padding: 8 10 10 10;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 20;
+    -fx-background-color:  #00e6b8;
+    -fx-border-width:1;
+    -fx-text-fill: #ffffff;
+}
+.loginButton:pressed {
+    -fx-padding: 10 10 8 10;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+
+/*-----------------------------------------------------------------*/
+
+
+.dashboardButton {
+    -fx-effect: dropshadow(three-pass-box, #0000001a, 10, 0, 0, 0);
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 30;
+    -fx-text-fill:#000000;
+    -fx-border-radius: 30px;
+    -fx-border-width: 2px;
+    -fx-border-color: #ffffff;
+}
+.dashboardButton:hover {
+     -fx-background-color: #00ffaa;
+     -fx-text-fill: #ffffff;
+     -fx-border-color: #08aa5f;
+}
+.dashboardButton:focused {
+}
+
+
+/*-----------------------------------------------------------------*/
+
+.defaultButton {
+    -fx-background-color: #ffffff;
+    -fx-background-radius:50;
+    -fx-text-fill:#000000;
+     -fx-border-radius: 50px;
+     -fx-border-width: 2px;
+    -fx-border-color: #ffffff;
+}
+.defaultButton:hover {
+     -fx-background-color: #00ffaa;
+     -fx-text-fill: #ffffff;
+     -fx-border-color: #08aa5f;
+}
+.defaultButton:focused {
+}
+
+
+/*-----------------------------------------------------------------*/
+
+.sideButton {
+    -fx-effect: dropshadow(three-pass-box, #bfbfbf, 10, 0, 0, 0);
+    -fx-padding: 0px 0px 0px 30px;
+    -fx-background-radius: 100px;
+    -fx-text-fill: #000000;
+}
+.sideButton:hover {
+    -fx-background-color: #808080;
+    -fx-text-fill: #ffffff;
+}
+.sideButton:focused {
+    -fx-background-radius: 100px;
+    -fx-background-color: #00ffaa;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #00cc88;
+    -fx-border-width: 1px;
+    -fx-border-radius: 100px;
+}
+
+
+/*-----------------------------------------------------------------*/
+
+.addCartButton {
+    -fx-effect: dropshadow(three-pass-box, #bfbfbf, 10, 0, 0, 0);
+    -fx-background-color: #ffe066;
+    -fx-text-fill: #454545;
+    -fx-border-color: #ffcc00;
+    -fx-border-width: 2px;
+    -fx-border-radius: 100px;
+    -fx-background-radius: 100;
+}
+.addCartButton:hover {
+    -fx-background-color: #ffcc00;
+    -fx-text-fill: #454545;
+    -fx-border-color: #b38f00;
+}
+
+
+/*-----------------------------------------------------------------*/
+
+.orderButton {
+    -fx-background-radius: 5;
+    -fx-background-color:  #00cc00;
+    -fx-text-fill:#ffffff;
+}
+.orderButton:hover {
+    -fx-background-radius: 5;
+    -fx-background-color: #00b300;
+    -fx-text-fill: #ffffff;
+}
+
+/*-----------------------------------------------------------------*/
+
+.buttonLogOut {
+    -fx-effect: dropshadow(three-pass-box, #bfbfbf, 10, 0, 0, 0);
+    -fx-background-color: #ff8080;
+    -fx-background-radius: 100px;
+    -fx-border-radius: 100px;
+    -fx-border-width: 2px;
+    -fx-border-color: #ff8080;
+    -fx-text-fill: #ffe6e6;
+}
+
+.buttonLogOut:hover{
+    -fx-background-color: #e60000;
+    -fx-border-color: #b30000;
+    -fx-border-radius: 100px;
+    -fx-border-width: 2px;
+    -fx-text-fill: #ffffff;
+}
+.buttonLogOut:focused{
+}
+
+
+/*-----------------------------------------------------------------*/
+
+.searchButton1 {
+    -fx-background-color: #ffffff;
+    -fx-background-radius:50;
+    -fx-text-fill:#000000;
+     -fx-border-radius: 50px;
+     -fx-border-width: 2px;
+    -fx-border-color: #ffffff;
+}
+.searchButton1:hover {
+     -fx-background-color: #ffa366;
+     -fx-text-fill: #ffffff;
+     -fx-border-color: #e65c00;
+}
+.searchButton1:focused {
+
+}
+
+
+/*-----------------------------------------------------------------*/
+
+.table {
+    -fx-background-radius: 3px 3px 10px 10px;
+}
+
+/*-----------------------------------------------------------------*/
+
+.paddingLabel {
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 50px;
+    -fx-label-padding:5px;
+}
+
+.leftPaddingLabel {
+    -fx-background-color: #e6e6e6;
+    -fx-padding: 0px 0px 0px 10px;
+    -fx-background-radius: 50px;
+}
+
+.tblLabel {
+    -fx-background-color: #d9d9d9;
+    -fx-background-radius: 20px 20px 0px 0px;
+}
+
+
+/*-----------------------------------------------------------------*/
+
+
+
+.payButton {
+    -fx-background-color: #66ff66;
+    -fx-background-radius:50;
+    -fx-text-fill:#000000;
+     -fx-border-radius: 50px;
+     -fx-border-width: 2px;
+    -fx-border-color:  #00e600;
+}
+.payButton:hover {
+     -fx-background-color: #00e600;
+     -fx-text-fill: #ffffff;
+     -fx-border-color: #008000;
+}
+
+/*-----------------------------------------------------------------*/
+
+.refundButton {
+    -fx-background-color: #ff9999;
+    -fx-background-radius:50;
+    -fx-text-fill:#000000;
+     -fx-border-radius: 50px;
+     -fx-border-width: 2px;
+    -fx-border-color: #b30047;
+}
+.refundButton:hover {
+     -fx-background-color: #ff0066;
+     -fx-text-fill: #ffffff;
+     -fx-border-color: #b30047;
+}
+
+/*-----------------------------------------------------------------*/
+
+.closeButton {
+    -fx-background-color: #ff9999;
+    -fx-background-radius:100;
+     -fx-border-radius: 100px;
+     -fx-border-width: 2px;
+    -fx-border-color: #b30047;
+}
+.closeButton:hover {
+     -fx-background-color: #ff0066;
+     -fx-border-color: #b30047;
+}

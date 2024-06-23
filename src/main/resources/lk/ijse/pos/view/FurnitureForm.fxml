@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" maxHeight="768.0" maxWidth="1100.0" minHeight="768.0" minWidth="1100.0" prefHeight="768.0" prefWidth="1100.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.kumudufurniture.controller.FurnitureFormController">
+   <children>
+      <Pane layoutY="55.0" maxHeight="713.0" maxWidth="1100.0" minHeight="713.0" minWidth="1100.0" prefHeight="713.0" prefWidth="1100.0" style="-fx-background-color: #f5f5f5;">
+         <children>
+            <Pane layoutX="786.0" layoutY="17.0" prefHeight="680.0" prefWidth="300.0" style="-fx-background-color: ffffff; -fx-background-radius: 15;">
+               <children>
+                  <ImageView fx:id="image" fitHeight="280.0" fitWidth="280.0" layoutX="9.0" layoutY="7.0" pickOnBounds="true">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <image>
+                        <Image url="@../asset/logo/puff.gif" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <effect>
+                        <Reflection fraction="1.0" topOpacity="0.4" />
+                     </effect>
+                  </ImageView>
+                  <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="295.0" onAction="#btnBrowseClickOnAction" prefHeight="35.0" prefWidth="150.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="BROWSE">
+                     <font>
+                        <Font name="Agency FB Bold" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/icons8-image.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Pane layoutX="13.0" layoutY="357.0">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="90.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Item ID">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblFurnId" layoutX="94.0" layoutY="1.0" prefHeight="30.0" prefWidth="180.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="id">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="40.0" prefHeight="30.0" prefWidth="90.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Description">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="80.0" prefHeight="30.0" prefWidth="90.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Material type">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="120.0" prefHeight="30.0" prefWidth="90.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Color">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="160.0" prefHeight="30.0" prefWidth="90.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Price">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="200.0" prefHeight="30.0" prefWidth="90.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Quantity">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFurnDesc" layoutX="94.0" layoutY="41.0" prefHeight="30.0" prefWidth="180.0" promptText="Description" styleClass="text" stylesheets="@../asset/css/text_field.css" />
+                        <TextField fx:id="txtMatType" layoutX="94.0" layoutY="81.0" prefHeight="30.0" prefWidth="180.0" promptText="Material type" styleClass="text" stylesheets="@../asset/css/text_field.css" />
+                        <TextField fx:id="txtFurnColor" layoutX="94.0" layoutY="121.0" prefHeight="30.0" prefWidth="180.0" promptText="Color" styleClass="text" stylesheets="@../asset/css/text_field.css" />
+                        <TextField fx:id="txtFurnPrice" layoutX="94.0" layoutY="161.0" prefHeight="30.0" prefWidth="180.0" promptText="Price" styleClass="text" stylesheets="@../asset/css/text_field.css" />
+                        <TextField fx:id="txtQty" layoutX="94.0" layoutY="201.0" prefHeight="30.0" prefWidth="180.0" promptText="Quantity" styleClass="text" stylesheets="@../asset/css/text_field.css" />
+                     </children>
+                  </Pane>
+                  <JFXButton buttonType="RAISED" layoutX="60.0" layoutY="609.0" onAction="#btnAddClickOnAction" prefHeight="40.0" prefWidth="180.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="ADD">
+                     <font>
+                        <Font name="Agency FB Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/icons8-add.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Label alignment="CENTER" layoutX="16.0" layoutY="30.0" prefHeight="40.0" prefWidth="300.0" styleClass="tblLabel" stylesheets="@../asset/css/stylesheet.css" text="ALL ITEMS">
+               <font>
+                  <Font name="Agency FB Bold" size="20.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tblItems" layoutX="16.0" layoutY="68.0" prefHeight="629.0" prefWidth="759.0" styleClass="table" stylesheets="@../asset/css/stylesheet.css">
+               <columns>
+                  <TableColumn fx:id="colId" prefWidth="57.600006103515625" text="ID" />
+                  <TableColumn fx:id="colDesc" prefWidth="176.00001525878906" text="Description" />
+                  <TableColumn fx:id="colWoodType" prefWidth="103.20002746582031" text="Wood type" />
+                  <TableColumn fx:id="colColor" prefWidth="98.39996337890625" text="Color" />
+                  <TableColumn fx:id="colPrice" prefWidth="144.800048828125" text="Price" />
+                  <TableColumn fx:id="colQty" prefWidth="57.39996337890625" text="Qty" />
+                  <TableColumn fx:id="colViewItem" minWidth="0.0" prefWidth="117.39996337890625" text="View item" />
+               </columns>
+            </TableView>
+            <TextField fx:id="txtSearch" layoutX="556.0" layoutY="21.0" onAction="#txtSearchClickOnAction" prefHeight="38.0" prefWidth="100.0" promptText="Item ID" styleClass="text" stylesheets="@../asset/css/text_field.css">
+               <font>
+                  <Font name="Agency FB Bold" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="42.06" radius="22.2825" width="49.07">
+                     <color>
+                        <Color opacity="0.1702127456665039" />
+                     </color>
+                  </DropShadow>
+               </effect></TextField>
+            <JFXButton buttonType="RAISED" graphicTextGap="5.0" layoutX="665.0" layoutY="21.0" onAction="#btnSearchClickOnAction" prefHeight="38.0" prefWidth="110.0" styleClass="searchButton1" stylesheets="@../asset/css/stylesheet.css" text="S E A R C H" textAlignment="CENTER">
+               <font>
+                  <Font name="Agency FB Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asset/icon/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="496.0" layoutY="17.0" onAction="#btnRefreshClickOnAction" prefHeight="38.0" prefWidth="38.0" style="-fx-background-radius: 100;">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asset/icon/icons8-refresh-96.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.019999999552965164" green="1.0" blue="0.8209136128425598" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color green="0.7434011697769165" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Label layoutX="15.0" layoutY="12.0" text="FURNITURE">
+         <font>
+            <Font name="Agency FB Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

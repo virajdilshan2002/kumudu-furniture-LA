@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="leftNode" maxHeight="500.0" maxWidth="400.0" minHeight="500.0" minWidth="400.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.kumudufurniture.controller.SignUpFormController">
+   <children>
+      <Label layoutX="96.0" layoutY="40.0" text="Sign Up">
+         <font>
+            <Font name="SansSerif Bold" size="30.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="75.0" layoutY="424.0" onAction="#btnSignUpClickOnAction" prefHeight="36.0" prefWidth="250.0" styleClass="loginButton" stylesheets="@../asset/css/stylesheet.css" text="Sign Up" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="74.0" layoutY="122.0" onAction="#txtUserNameClickOnAction" prefHeight="30.0" prefWidth="250.0" promptText="User name">
+         <font>
+            <Font name="SansSerif Bold" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtFullName" labelFloat="true" layoutX="74.0" layoutY="182.0" onAction="#txtFullNameClickOnAction" prefHeight="30.0" prefWidth="250.0" promptText="Full name">
+         <font>
+            <Font name="SansSerif Bold" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="74.0" layoutY="242.0" onAction="#txtEmailClickOnAction" onKeyReleased="#txtEmailOnKeyRelesedAction" prefHeight="30.0" prefWidth="250.0" promptText="Email address">
+         <font>
+            <Font name="SansSerif Bold" size="14.0" />
+         </font>
+      </JFXTextField>
+      <ImageView accessibleRole="BUTTON" fitHeight="35.0" fitWidth="35.0" layoutX="42.0" layoutY="40.0" onMouseClicked="#imgBackOnMouseClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/icon/left-arrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <JFXPasswordField fx:id="txtReEnterPw" labelFloat="true" layoutX="77.0" layoutY="360.0" onAction="#txtReEnterPwClickOnAction" onKeyReleased="#txtReEnterPwOnKeyRelesedAction" prefHeight="30.0" prefWidth="250.0" promptText="Re-enter password">
+         <font>
+            <Font name="SansSerif Bold" size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="74.0" layoutY="302.0" onAction="#txtPasswordClickOnAction" prefHeight="30.0" prefWidth="250.0" promptText="Password">
+         <font>
+            <Font name="SansSerif Bold" size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <ImageView fx:id="imgPwError" fitHeight="25.0" fitWidth="25.0" layoutX="300.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/icon/warning.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgEmailError" fitHeight="25.0" fitWidth="25.0" layoutX="300.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/icon/warning.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

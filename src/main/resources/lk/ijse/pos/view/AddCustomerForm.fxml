@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="400.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.kumudufurniture.controller.AddCustomerFormController">
+   <children>
+      <Pane layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #f5f5f5;">
+         <children>
+            <Pane layoutX="25.0" layoutY="25.0" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;">
+               <children>
+                  <Pane layoutX="54.0" layoutY="31.0">
+                     <children>
+                        <Label layoutX="2.0" layoutY="15.0" prefHeight="18.0" prefWidth="99.0" text="Customer ID : ">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblCusId" layoutX="102.0" layoutY="16.0" text="ID">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXButton buttonType="RAISED" layoutX="31.0" layoutY="298.0" onAction="#btnSaveClickOnAction" prefHeight="40.0" prefWidth="180.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="Save">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../asset/icon/icons8-add.gif" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXTextField fx:id="txtName" labelFloat="true" layoutX="2.0" layoutY="65.0" onAction="#txtNameClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Customer Name">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font></JFXTextField>
+                        <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="2.0" layoutY="243.0" onAction="#txtContactClickOnAction" onKeyReleased="#txtContactOnKeyRelesed" prefHeight="30.0" prefWidth="240.0" promptText="Contact Number">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font></JFXTextField>
+                        <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="2.0" layoutY="123.0" onAction="#txtAddressClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Address">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font></JFXTextField>
+                        <JFXButton buttonType="RAISED" layoutX="192.0" layoutY="10.0" onAction="#btnClearClickOnAction" styleClass="refundButton" stylesheets="@../asset/css/stylesheet.css" text="CLEAR">
+                           <font>
+                              <Font name="Agency FB Bold" size="13.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="1.0" layoutY="183.0" onAction="#txtEmailClickOnAction" onKeyReleased="#txtEmailOnKeyRelesedAction" prefHeight="30.0" prefWidth="240.0" promptText="Email address">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font></JFXTextField>
+                        <ImageView fx:id="imgEmailOk" fitHeight="25.0" fitWidth="25.0" layoutX="216.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/check_mark.gif" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgContactOk" fitHeight="25.0" fitWidth="25.0" layoutX="216.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/check_mark.gif" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgContactError" fitHeight="25.0" fitWidth="25.0" layoutX="216.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/warning.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgEmailError" fitHeight="25.0" fitWidth="25.0" layoutX="216.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/icon/warning.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Label layoutX="119.0" layoutY="14.0" text="NEW CUSTOMER" textAlignment="CENTER">
+         <font>
+            <Font name="Agency FB Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
