@@ -88,6 +88,6 @@ public class CredentialDAOImpl implements CredentialDAO {
 
     @Override
     public ResultSet checkCredential(String userName) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("select userName,password from credential where BINARY userName = ?", userName);
+        return SQLUtil.execute("SELECT userName,password from credential where BINARY userName = ?", userName);
     }
 }
