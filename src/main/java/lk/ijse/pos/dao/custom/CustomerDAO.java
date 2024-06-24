@@ -1,0 +1,15 @@
+package lk.ijse.pos.dao.custom;
+
+import lk.ijse.pos.dao.CrudDAO;
+import lk.ijse.pos.entity.Customer;
+
+import java.sql.SQLException;
+
+public interface CustomerDAO extends CrudDAO<Customer> {
+
+    String getCurrentCusId() throws SQLException, ClassNotFoundException;
+
+    String getNextCusId(String currentId);
+
+    int getCustomersCount() throws SQLException, ClassNotFoundException;
+}

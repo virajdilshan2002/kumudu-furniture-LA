@@ -5,9 +5,10 @@ import lk.ijse.pos.dto.CustomerDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface CustomerBo extends SuperBO {
-    ArrayList<CustomerDTO> getAll() throws SQLException, ClassNotFoundException;
+    List<CustomerDTO> getAll() throws SQLException, ClassNotFoundException;
 
     boolean add(CustomerDTO dto) throws SQLException, ClassNotFoundException;
 

@@ -5,9 +5,10 @@ import lk.ijse.pos.dto.FurnitureDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public interface ItemBo extends SuperBO {
-     ArrayList<FurnitureDTO> getAll() throws SQLException, ClassNotFoundException;
+public interface FurnitureBo extends SuperBO {
+     List<FurnitureDTO> getAll() throws SQLException, ClassNotFoundException;
 
      boolean delete(String code) throws SQLException, ClassNotFoundException;
 
