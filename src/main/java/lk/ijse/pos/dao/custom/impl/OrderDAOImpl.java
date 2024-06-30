@@ -7,6 +7,7 @@ import lk.ijse.pos.dao.SQLUtil;
 import lk.ijse.pos.dao.custom.OrderDAO;
 import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.entity.Order;
+import lk.ijse.pos.util.PaymentType;
 import lk.ijse.pos.view.tdm.AdvanceSearchTm;
 
 import java.sql.Connection;
@@ -66,7 +67,7 @@ public class OrderDAOImpl implements OrderDAO {
             String orderId = resultSet.getString(1);
             String cusId = resultSet.getString(2);
             String orderDate = resultSet.getString(3);
-            String paymentType = resultSet.getString(4);
+            PaymentType paymentType = PaymentType.valueOf(resultSet.getString(4));
             double totalPayment = resultSet.getDouble(6);
 
             Order order = new Order(orderId, cusId, orderDate, paymentType,null, totalPayment);
@@ -84,7 +85,7 @@ public class OrderDAOImpl implements OrderDAO {
             String orderId = resultSet.getString(1);
             String cusId = resultSet.getString(2);
             String orderDate = resultSet.getString(3);
-            String paymentType = resultSet.getString(4);
+            PaymentType paymentType = PaymentType.valueOf(resultSet.getString(4));
             double advancePayment = resultSet.getDouble(5);
             double totalPayment = resultSet.getDouble(6);
 
@@ -101,7 +102,7 @@ public class OrderDAOImpl implements OrderDAO {
         if (resultSet.next()) {
             String cusId = resultSet.getString(2);
             String orderDate = resultSet.getString(3);
-            String paymentType = resultSet.getString(4);
+            PaymentType paymentType = PaymentType.valueOf(resultSet.getString(4));
             double advancePayment = resultSet.getDouble(5);
             double totalPayment = resultSet.getDouble(6);
 

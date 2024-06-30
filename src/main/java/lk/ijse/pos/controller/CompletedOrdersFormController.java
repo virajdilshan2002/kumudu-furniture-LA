@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import lk.ijse.pos.dao.custom.OrderDAO;
 import lk.ijse.pos.dao.custom.impl.OrderDAOImpl;
 import lk.ijse.pos.entity.Order;
+import lk.ijse.pos.util.PaymentType;
 import lk.ijse.pos.view.tdm.OrderTm;
 
 import java.io.IOException;
@@ -66,7 +67,7 @@ public class CompletedOrdersFormController {
             String orderId = order.getOrderId();
             String cusId = order.getCusId();
             String orderDate = order.getOrderDate();
-            String paymentType = order.getPaymentType();
+            PaymentType paymentType = order.getPaymentType();
             double totalPayment = order.getTotalPayment();
 
             JFXButton btnDetails = new JFXButton("DETAILS");

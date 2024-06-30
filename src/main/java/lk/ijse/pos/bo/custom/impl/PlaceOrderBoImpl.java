@@ -9,9 +9,6 @@ import lk.ijse.pos.dao.SQLUtil;
 import lk.ijse.pos.dao.custom.FurnitureDAO;
 import lk.ijse.pos.dao.custom.OrderDAO;
 import lk.ijse.pos.dao.custom.OrderDetailDAO;
-import lk.ijse.pos.dao.custom.impl.FurnitureDAOImpl;
-import lk.ijse.pos.dao.custom.impl.OrderDAOImpl;
-import lk.ijse.pos.dao.custom.impl.OrderDetailDAOImpl;
 import lk.ijse.pos.db.DBConnection;
 import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.FurnitureDTO;
@@ -21,7 +18,6 @@ import lk.ijse.pos.entity.Order;
 import lk.ijse.pos.entity.OrderDetail;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -81,7 +77,7 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
     }
 
     @Override
-    public String getCurrentOrderId() throws SQLException, ClassNotFoundException {
+    public String getLastOrderId() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT orderId FROM orders ORDER BY CAST(SUBSTRING(orderId, 2) AS UNSIGNED) DESC LIMIT 1");
         if (resultSet.next()) {
             return resultSet.getString(1);
@@ -90,9 +86,10 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
     }
 
     @Override
-    public String getNextOrderId(String currentOrderId) {
-        if (currentOrderId != null) {
-            String[] split = currentOrderId.split("#");
+    public String generateNewOrderId() throws SQLException, ClassNotFoundException {
+        String lastOrderId = getLastOrderId();
+        if (lastOrderId != null) {
+            String[] split = lastOrderId.split("#");
             int id = Integer.parseInt(split[1],10);
             return "#" + String.format("%05d", ++id);
         }
@@ -101,7 +98,7 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
 
     @Override
     public boolean placeOrder(OrderDTO orderDTO, List<OrderDetailDTO> dtoList){
-
+        //Convert DTO to Entity
         Order order = new Order(
                 orderDTO.getOrderId(),
                 orderDTO.getCusId(),
@@ -111,6 +108,7 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
                 orderDTO.getTotalPayment()
         );
 
+        //Convert DTO List to Entity List
         ArrayList<OrderDetail> entityList = new ArrayList<>();
         for (OrderDetailDTO dto : dtoList){
             entityList.add(new OrderDetail(
@@ -121,19 +119,20 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
             ));
         }
 
-        Connection connection = null;
+        //Transaction
+        Connection connection;
         try {
             connection = DBConnection.getDbConnection().getConnection();
             connection.setAutoCommit(false);
-            boolean isOrderSaved = orderDAO.save(order);
-            if (isOrderSaved) {
-                System.out.println("Order Query Executed To Pool");
-                boolean isOrderDetailSaved = orderDetailDAO.save(entityList);
-                if (isOrderDetailSaved) {
-                    System.out.println("Order Detail Query Executed To Pool");
-                    boolean isFurnQtyUpdate = furnitureDAO.updateQty(entityList);
-                    if (isFurnQtyUpdate) {
-                        System.out.println("Furniture Query Executed To Pool");
+
+            if (orderDAO.save(order)) {
+                System.out.println("Order Query Executed To Pool!");
+
+                if (orderDetailDAO.save(entityList)) {
+                    System.out.println("Order Detail Query Executed To Pool!");
+
+                    if (furnitureDAO.updateQty(entityList)) {
+                        System.out.println("Furniture Query Executed To Pool!");
 
                         ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
                         ButtonType no = new ButtonType("No",ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -153,8 +152,7 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
             connection.setAutoCommit(true);
             return false;
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException(e);
         }
     }
 }

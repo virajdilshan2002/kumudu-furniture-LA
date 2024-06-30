@@ -7,11 +7,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -20,7 +18,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import lk.ijse.pos.bo.BOFactory;
 import lk.ijse.pos.bo.custom.CustomerBo;
 import lk.ijse.pos.bo.custom.FurnitureBo;
@@ -30,11 +27,9 @@ import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.FurnitureDTO;
 import lk.ijse.pos.dto.OrderDTO;
 import lk.ijse.pos.dto.OrderDetailDTO;
-import lk.ijse.pos.entity.Customer;
-import lk.ijse.pos.entity.Furniture;
-import lk.ijse.pos.entity.Order;
-import lk.ijse.pos.entity.OrderDetail;
+
 import lk.ijse.pos.util.Mail;
+import lk.ijse.pos.util.PaymentType;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.view.tdm.CartTm;
 import net.sf.jasperreports.engine.*;
@@ -44,12 +39,14 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
+import static lk.ijse.pos.view.loadFXML.newStage;
+
 public class PlaceOrderFormController {
+
     public AnchorPane rootNode;
     public Label lblDate;
     public Label lblOrderId;
@@ -65,9 +62,9 @@ public class PlaceOrderFormController {
     public TableColumn<?, ?> colQty;
     public TableColumn<?, ?> colTotal;
     public TableColumn<?, ?> colAction;
-    public JFXComboBox<String> cmbPaymentType;
+    public JFXComboBox<PaymentType> cmbPaymentType;
     public TextField txtPayment;
-    public static String paymentType;
+    public PaymentType paymentType;
     public TextField txtPrice;
 
     public Label lblCusId;
@@ -93,13 +90,13 @@ public class PlaceOrderFormController {
 
     public void initialize(){
         setCellValueFactory();
+        loadItemList();
 
-        setNextOrderId();
+        generateNewOrderId();
         setDate();
         setPaymentTypes();
 
         setDisable();
-        getItemList();
         initializeItemScrollPane();
     }
 
@@ -110,7 +107,7 @@ public class PlaceOrderFormController {
         imgLoading.setVisible(false);
     }
 
-    private void getItemList() {
+    private void loadItemList() {
         try {
             itemList = furnitureBo.getAll();
         } catch (SQLException | ClassNotFoundException e) {
@@ -119,48 +116,52 @@ public class PlaceOrderFormController {
     }
 
     private void initializeItemScrollPane() {
+        //Create a GridPane for all items
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(0));
         gridPane.setHgap(0);
         gridPane.setVgap(10);
 
+        //Create a pane for each item
         for (int i = 0; i < itemList.size(); i++) {
             Pane pane = new Pane();
-            ImageView imageView = createImageView(itemList.get(i).getImageFile());
-            Label desc = descLabel(itemList.get(i).getFurnDescription() , itemList.get(i).getFurnPrice());
-            Label qty = qtyLabel(itemList.get(i).getFurnQty());
-            Label id = idLabel(itemList.get(i).getFurnId());
-            JFXButton btnSelectItem = creatButton();
 
-            int finalI = i;
+            ImageView imageView = createImageView(itemList.get(i).getImageFile());
+            Label desc = createDescLabel(itemList.get(i).getFurnDescription() , itemList.get(i).getFurnPrice());
+            Label qty = createQtyLabel(itemList.get(i).getFurnQty());
+            Label id = createIdLabel(itemList.get(i).getFurnId());
+
+            //Create a button to select the item
+            JFXButton btnSelectItem = creatItemButton();
+            final int curentItemIndex = i; // Create a variable to store the index of the item
+            //Add an event handler to the button
             btnSelectItem.setOnAction(event -> {
                 Image image = imageView.getImage();
                 imgSelectedItem.setImage(image);
-                lblFurnId.setText(itemList.get(finalI).getFurnId());
-                lblDesc.setText(itemList.get(finalI).getFurnDescription());
-                txtPrice.setText(String.valueOf(itemList.get(finalI).getFurnPrice()));
-                lblStock.setText(String.valueOf(itemList.get(finalI).getFurnQty()));
+                lblFurnId.setText(itemList.get(curentItemIndex).getFurnId());
+                lblDesc.setText(itemList.get(curentItemIndex).getFurnDescription());
+                txtPrice.setText(String.valueOf(itemList.get(curentItemIndex).getFurnPrice()));
+                lblStock.setText(String.valueOf(itemList.get(curentItemIndex).getFurnQty()));
+
                 lblStock.setVisible(true);
                 txtQty.clear();
                 txtQty.requestFocus();
 
-                for (FurnitureDTO item : itemList){
-                    if (item.getFurnId().equals(lblFurnId.getText())){
-                        selectedItem = item;
-                    }
-                }
+                selectedItem = itemList.get(curentItemIndex);
             });
+
+            //Add the pane to the GridPane
             pane.getChildren().addAll(imageView, qty, id, desc, btnSelectItem);
             gridPane.add(pane, i % 4, i / 4);
         }
 
-        ScrollPane sp = new ScrollPane(gridPane);
-        ItemScrollPane.setContent(sp);
+        //Set the GridPane as the content of the ScrollPane
+        ItemScrollPane.setContent(new ScrollPane(gridPane));
         ItemScrollPane.setFitToHeight(true);
         ItemScrollPane.setFitToWidth(true);
     }
 
-    private Label idLabel(String furnId) {
+    private Label createIdLabel(String furnId) {
         Label lbl = new Label(furnId);
         lbl.setAlignment(Pos.CENTER);
         lbl.setPrefHeight(10);
@@ -171,7 +172,7 @@ public class PlaceOrderFormController {
         return lbl;
     }
 
-    private Label qtyLabel(int qty) {
+    private Label createQtyLabel(int qty) {
         Label lbl = new Label(Integer.toString(qty));
         lbl.setPrefWidth(30);
         lbl.setPrefHeight(30);
@@ -182,7 +183,7 @@ public class PlaceOrderFormController {
         return lbl;
     }
 
-    private Label descLabel(String furnDescription , double price) {
+    private Label createDescLabel(String furnDescription , double price) {
         Label lbl = new Label(furnDescription + " : " + String.valueOf(price) + "/=");
         lbl.setStyle("-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #00cc7a;");
         lbl.setLayoutX(10);
@@ -190,7 +191,7 @@ public class PlaceOrderFormController {
         return lbl;
     }
 
-    private JFXButton creatButton() {
+    private JFXButton creatItemButton() {
         JFXButton btn = new JFXButton("SELECT");
         btn.setCursor(Cursor.HAND);
         btn.setButtonType(JFXButton.ButtonType.RAISED);
@@ -213,7 +214,7 @@ public class PlaceOrderFormController {
     }
 
     private void setPaymentTypes() {
-        ObservableList<String> obList = FXCollections.observableArrayList("Cash", "Advance");
+        ObservableList<PaymentType> obList = FXCollections.observableArrayList(PaymentType.CASH, PaymentType.ADVANCE);
         cmbPaymentType.setItems(obList);
     }
 
@@ -227,16 +228,12 @@ public class PlaceOrderFormController {
     }
 
     private void setDate() {
-        LocalDate localDate = LocalDate.now();
-        lblDate.setText(String.valueOf(localDate));
+        lblDate.setText(String.valueOf(LocalDate.now()));
     }
 
-    private void setNextOrderId() {
+    private void generateNewOrderId() {
         try {
-            String currentOrderId = placeOrderBo.getCurrentOrderId();
-            String nextOrderId = placeOrderBo.getNextOrderId(currentOrderId);
-
-            lblOrderId.setText(nextOrderId);
+            lblOrderId.setText(placeOrderBo.generateNewOrderId());
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -244,7 +241,7 @@ public class PlaceOrderFormController {
 
     public void txtContactNoClickOnAction(ActionEvent actionEvent) {
         if (Regex.setTextColor(lk.ijse.pos.util.TextField.PHONE,txtContactNo)){
-            getCustomer();
+            searchCustomer();
             btnPlaceOrder.requestFocus();
         }else {
             new Alert(Alert.AlertType.ERROR, "Invalid Contact No!").show();
@@ -252,7 +249,7 @@ public class PlaceOrderFormController {
         }
     }
 
-    private void getCustomer() {
+    private void searchCustomer() {
         try {
             customer = customerBo.searchByContact(txtContactNo.getText());
             if (customer != null) {
@@ -267,18 +264,11 @@ public class PlaceOrderFormController {
     }
 
     public void btnAddNewCustomerClickOnAction(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/AddCustomerForm.fxml"))));
-
-        stage.setTitle("Add New Customer Form");
-        stage.centerOnScreen();
-        stage.show();
+        newStage("/view/AddCustomerForm.fxml", "Add New Customer Form");
     }
 
     public void btnAddToCartClickOnAction(ActionEvent actionEvent) {
-        boolean isValid = checkDetailsBeforeAddingToCart();
-
-        if (isValid) {
+        if (checkDetailsBeforeAddingToCart()) {
 
             ButtonType yes = new ButtonType("Yes",ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No",ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -370,10 +360,9 @@ public class PlaceOrderFormController {
                 int availableQty = furnitureBo.checkAvailableQty(furnId, orderQty);
                 if (availableQty > 0) {
                     return true;
-                }else {
-                    new Alert(Alert.AlertType.ERROR, "Quantity Not Available! Available Quantity Is : " + availableQty).show();
-                    return false;
                 }
+                new Alert(Alert.AlertType.ERROR, "Quantity Not Available! Available Quantity Is : " + availableQty).show();
+                return false;
 
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
@@ -382,7 +371,7 @@ public class PlaceOrderFormController {
     }
 
     private void calculateTotalPrice() {
-        double total = 0.0;
+        double total = 0;
         for (CartTm cartTm : cartList){
             total += cartTm.getTotal();
         }
@@ -395,7 +384,7 @@ public class PlaceOrderFormController {
 
     public void cmbPaymentTypeClickOnAction(ActionEvent actionEvent) {
         paymentType = cmbPaymentType.getValue();
-        if (paymentType.equals("Cash")){
+        if (paymentType.equals(PaymentType.CASH)) {
             lblPayment.setDisable(true);
             txtPayment.setDisable(true);
             btnPlaceOrder.requestFocus();
@@ -446,10 +435,10 @@ public class PlaceOrderFormController {
             String orderId = lblOrderId.getText();
             String cusId = lblCusId.getText();
             String orderDate = lblDate.getText();
-            String paymentType = cmbPaymentType.getValue();
+            paymentType = cmbPaymentType.getValue();
             double payment;
 
-            if (paymentType.equals("Cash")){
+            if (paymentType.equals(PaymentType.CASH)){
                 payment = Double.parseDouble(lblTotal.getText());
             }else {
                 payment = Double.parseDouble(txtPayment.getText());
@@ -457,7 +446,7 @@ public class PlaceOrderFormController {
             double total = Double.parseDouble(lblTotal.getText());
 
             OrderDTO order;
-            if (paymentType.equals("Advance")) {
+            if (paymentType.equals(PaymentType.ADVANCE)) {
                 order = new OrderDTO(orderId, cusId, orderDate, paymentType, payment, total);
             } else {
                 order = new OrderDTO(orderId, cusId, orderDate, paymentType, null, total);
@@ -478,16 +467,15 @@ public class PlaceOrderFormController {
             if (placeOrderBo.placeOrder(order,odList)) {
                 new Alert(Alert.AlertType.INFORMATION, "Order Placed Successfully!").show();
 
-                cartList.clear();
-                tblOrderCart.refresh();
-                txtQty.clear();
-                txtPayment.clear();
-                lblTotal.setText("0.0");
-
                 if (customer.getEmail() != null){
                     sendReceipt();
                 }
 
+                cartList.clear();
+                tblOrderCart.refresh();
+                txtQty.clear();
+                txtPayment.clear();
+                lblTotal.setText("0.00");
             } else {
                 new Alert(Alert.AlertType.WARNING, "Order Not Placed!").show();
             }

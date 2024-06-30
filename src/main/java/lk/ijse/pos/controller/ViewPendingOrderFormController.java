@@ -106,7 +106,7 @@ public class ViewPendingOrderFormController {
         lblCusId.setText(orderTm.getCusId());
         lblOrderId.setText(orderTm.getOrderId());
         lblOrderDate.setText(orderTm.getOrderDate());
-        lblPaymentType.setText(orderTm.getPaymentType());
+        lblPaymentType.setText(String.valueOf(orderTm.getPaymentType()));
         lblNetTotal.setText(String.valueOf(orderTm.getTotalPayment()));
 
         try {
