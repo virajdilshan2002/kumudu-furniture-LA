@@ -11,8 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.custom.CredentialDAO;
-import lk.ijse.pos.dao.custom.impl.CredentialDAOImpl;
+import lk.ijse.pos.dao.custom.UserDAO;
+import lk.ijse.pos.dao.custom.impl.UserDAOImpl;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -29,7 +29,7 @@ public class LoginFormController {
     public JFXPasswordField txtPassword;
     public ImageView imgBackground;
 
-    CredentialDAO credentialDAO = new CredentialDAOImpl();
+    UserDAO userDAO = new UserDAOImpl();
 
     public void initialize() {
         lblWarningUserName.setVisible(false);
@@ -82,7 +82,7 @@ public class LoginFormController {
                 lblWarningUserName.setVisible(false);
                 lblWarningPw.setVisible(false);
 
-                ResultSet rst = credentialDAO.checkCredential(userName);
+                ResultSet rst = userDAO.checkCredential(userName);
 
                 if (rst.next()){
                     lblWarningUserName.setVisible(false);

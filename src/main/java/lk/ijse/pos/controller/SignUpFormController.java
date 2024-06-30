@@ -12,9 +12,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.custom.CredentialDAO;
-import lk.ijse.pos.dao.custom.impl.CredentialDAOImpl;
-import lk.ijse.pos.entity.Credential;
+import lk.ijse.pos.dao.custom.UserDAO;
+import lk.ijse.pos.dao.custom.impl.UserDAOImpl;
+import lk.ijse.pos.entity.User;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.util.TextField;
 
@@ -33,7 +33,7 @@ public class SignUpFormController {
     public ImageView imgPwError;
     public ImageView imgEmailError;
 
-    CredentialDAO credentialDAO = new CredentialDAOImpl();
+    UserDAO userDAO = new UserDAOImpl();
 
     public void initialize(){
         imgPwError.setVisible(false);
@@ -49,7 +49,7 @@ public class SignUpFormController {
 
         if (isValid()) {
             try {
-                boolean isSaved = credentialDAO.add(new Credential(userName,
+                boolean isSaved = userDAO.add(new User(userName,
                         fullName,
                         email,
                         password)

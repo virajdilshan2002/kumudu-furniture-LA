@@ -1,15 +1,13 @@
 package lk.ijse.pos.dao.custom;
 
 import lk.ijse.pos.dao.CrudDAO;
-import lk.ijse.pos.entity.Credential;
+import lk.ijse.pos.entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface CredentialDAO extends CrudDAO<Credential> {
-    Credential isUserExist(String userName) throws SQLException, ClassNotFoundException;
+public interface UserDAO extends CrudDAO<User> {
+    User isUserExist(String userName) throws SQLException, ClassNotFoundException;
 
     boolean updatePassword(String userName, String newPassword) throws SQLException, ClassNotFoundException;
 

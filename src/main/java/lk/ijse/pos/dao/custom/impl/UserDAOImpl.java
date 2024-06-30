@@ -1,36 +1,34 @@
 package lk.ijse.pos.dao.custom.impl;
 
 import lk.ijse.pos.dao.SQLUtil;
-import lk.ijse.pos.dao.custom.CredentialDAO;
-import lk.ijse.pos.entity.Credential;
+import lk.ijse.pos.dao.custom.UserDAO;
+import lk.ijse.pos.entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CredentialDAOImpl implements CredentialDAO {
+public class UserDAOImpl implements UserDAO {
     @Override
-    public List<Credential> getAll() throws SQLException, ClassNotFoundException {
+    public List<User> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean add(Credential credential) throws SQLException, ClassNotFoundException {
+    public boolean add(User user) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("INSERT INTO credential VALUES(?, ?, ?, ?)",
-                credential.getUserName(),
-                credential.getFullName(),
-                credential.getEmail(),
-                credential.getPassword()
+                user.getUserName(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getPassword()
         );
     }
 
     @Override
-    public boolean update(Credential credential) throws SQLException, ClassNotFoundException {
+    public boolean update(User user) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("UPDATE credential SET password = ? WHERE userName = ?",
-                credential.getUserName(),
-                credential.getPassword()
+                user.getUserName(),
+                user.getPassword()
         );
     }
 
@@ -50,15 +48,15 @@ public class CredentialDAOImpl implements CredentialDAO {
     }
 
     @Override
-    public Credential search(String id) throws SQLException, ClassNotFoundException {
+    public User search(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public Credential isUserExist(String name) throws SQLException, ClassNotFoundException {
+    public User isUserExist(String name) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM credential WHERE userName = ?", name);
         if (resultSet.next()){
-            return new Credential(
+            return new User(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),

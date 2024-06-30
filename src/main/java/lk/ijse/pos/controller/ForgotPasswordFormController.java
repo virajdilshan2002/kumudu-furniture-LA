@@ -16,7 +16,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import lk.ijse.pos.bo.BOFactory;
 import lk.ijse.pos.bo.custom.UserBO;
-import lk.ijse.pos.dto.CredentialDTO;
+import lk.ijse.pos.dto.UserDTO;
 import lk.ijse.pos.util.Mail;
 
 import javax.mail.MessagingException;
@@ -54,7 +54,7 @@ public class ForgotPasswordFormController {
     @FXML
     private JFXTextField txtUserName;
 
-    private CredentialDTO user = null;
+    private UserDTO user = null;
     private Integer otp = null;
 
     UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOType.USER);
