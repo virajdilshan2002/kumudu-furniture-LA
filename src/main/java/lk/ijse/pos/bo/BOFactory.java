@@ -1,9 +1,7 @@
 package lk.ijse.pos.bo;
 
-import lk.ijse.pos.bo.custom.impl.CustomerBoImpl;
-import lk.ijse.pos.bo.custom.impl.FurnitureBoImpl;
-import lk.ijse.pos.bo.custom.impl.PlaceOrderBoImpl;
-import lk.ijse.pos.bo.custom.impl.UserBOImpl;
+import lk.ijse.pos.bo.custom.OrderBO;
+import lk.ijse.pos.bo.custom.impl.*;
 
 public class BOFactory implements SuperBO{
     private static BOFactory boFactory;
@@ -11,11 +9,13 @@ public class BOFactory implements SuperBO{
     private static FurnitureBoImpl furnitureBo;
     private static PlaceOrderBoImpl placeOrderBo;
     private static UserBOImpl userBO;
+    private static OrderBOImpl orderBO;
     private BOFactory(){
         userBO = new UserBOImpl();
         customerBo = new CustomerBoImpl();
         furnitureBo = new FurnitureBoImpl();
         placeOrderBo = new PlaceOrderBoImpl();
+        orderBO = new OrderBOImpl();
     }
 
     public static BOFactory getInstance(){
@@ -23,11 +23,12 @@ public class BOFactory implements SuperBO{
     }
 
     public enum BOType {
-        USER,CUSTOMER,FURNITURE,PLACEORDER
+        USER,CUSTOMER,FURNITURE,PLACEORDER,ORDER
     }
 
     public SuperBO getBO(BOType type){
         return switch (type) {
+            case ORDER -> orderBO;
             case USER -> userBO;
             case CUSTOMER -> customerBo;
             case FURNITURE -> furnitureBo;

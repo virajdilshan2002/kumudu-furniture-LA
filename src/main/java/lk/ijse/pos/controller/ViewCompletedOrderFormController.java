@@ -7,28 +7,19 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.DAOFactory;
-import lk.ijse.pos.dao.custom.OrderDAO;
-import lk.ijse.pos.dao.custom.OrderDetailDAO;
-import lk.ijse.pos.dao.custom.impl.OrderDAOImpl;
-import lk.ijse.pos.dao.custom.impl.OrderDetailDAOImpl;
-import lk.ijse.pos.db.DBConnection;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.OrderBO;
+import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.util.Mail;
 import lk.ijse.pos.view.tdm.AdvanceSearchTm;
 import lk.ijse.pos.view.tdm.OrderTm;
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 import javax.mail.MessagingException;
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import static lk.ijse.pos.util.GenerateBill.getPDFFile;
@@ -51,10 +42,9 @@ public class ViewCompletedOrderFormController {
     public Label lblOrderDate;
     private ObservableList<AdvanceSearchTm> purchaseList;
     private OrderTm orderTm;
-    private Customer customer;
+    private CustomerDTO customer;
 
-    OrderDAO orderDAO = (OrderDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ORDER);
-    OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ORDER_DETAIL);
+    OrderBO orderBO = (OrderBO) BOFactory.getInstance().getBO(BOFactory.BOType.ORDER);
 
     public void initialize() {
         setCellValueFactory();
@@ -69,7 +59,7 @@ public class ViewCompletedOrderFormController {
 
     private void getCustomer() {
         try {
-            this.customer = orderDAO.getCustomer(orderTm.getCusId());
+            this.customer = orderBO.getCustomer(orderTm.getCusId());
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -78,7 +68,7 @@ public class ViewCompletedOrderFormController {
     private void loadCOItemTable() {
         purchaseList = FXCollections.observableArrayList();
         try {
-            List<AdvanceSearchTm> list = orderDetailDAO.getOrderItems(orderTm.getOrderId());
+            List<AdvanceSearchTm> list = orderBO.getOrderItems(orderTm.getOrderId());
             if (!list.isEmpty()) {
                 purchaseList.addAll(list);
                 tblAdSearch.setItems(purchaseList);
@@ -99,7 +89,7 @@ public class ViewCompletedOrderFormController {
         lblNetTotal.setText(String.valueOf(orderTm.getTotalPayment()));
 
         try {
-            Customer customer = orderDAO.getCustomer(orderTm.getCusId());
+            CustomerDTO customer = orderBO.getCustomer(orderTm.getCusId());
             if (customer != null) {
                 lblCusName.setText(customer.getName());
                 lblCusNum.setText(customer.getContact());
@@ -130,7 +120,7 @@ public class ViewCompletedOrderFormController {
         if (type.orElse(no) == yes) {
             String id = lblOrderId.getText();
             try {
-                boolean isRefunded = orderDAO.refund(id, purchaseList);
+                boolean isRefunded = orderBO.refundOrder(id, purchaseList);
                 if (isRefunded) {
                     new Alert(Alert.AlertType.INFORMATION, "Refunded Successfully!").show();
                     Stage stage = (Stage) rootNode.getScene().getWindow();
