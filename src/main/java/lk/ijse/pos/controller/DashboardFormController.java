@@ -11,7 +11,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
-import lk.ijse.pos.bo.custom.OrderBo;
 import lk.ijse.pos.dao.custom.CustomerDAO;
 import lk.ijse.pos.dao.custom.FurnitureDAO;
 import lk.ijse.pos.dao.custom.OrderDAO;

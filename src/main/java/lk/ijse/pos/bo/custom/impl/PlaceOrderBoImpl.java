@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import lk.ijse.pos.bo.custom.PlaceOrderBo;
+import lk.ijse.pos.dao.DAOFactory;
 import lk.ijse.pos.dao.SQLUtil;
 import lk.ijse.pos.dao.custom.FurnitureDAO;
 import lk.ijse.pos.dao.custom.OrderDAO;
@@ -14,6 +15,7 @@ import lk.ijse.pos.dao.custom.impl.OrderDetailDAOImpl;
 import lk.ijse.pos.db.DBConnection;
 import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.FurnitureDTO;
+import lk.ijse.pos.dto.OrderDTO;
 import lk.ijse.pos.dto.OrderDetailDTO;
 import lk.ijse.pos.entity.Order;
 import lk.ijse.pos.entity.OrderDetail;
@@ -29,9 +31,9 @@ import java.util.Optional;
 
 public class PlaceOrderBoImpl implements PlaceOrderBo {
 
-    OrderDAO orderDAO = new OrderDAOImpl();
-    OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
-    FurnitureDAO furnitureDAO = new FurnitureDAOImpl();
+    OrderDAO orderDAO = (OrderDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ORDER);
+    OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ORDER_DETAIL);
+    FurnitureDAO furnitureDAO = (FurnitureDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.FURNITURE);
 
     @Override
     public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
@@ -98,7 +100,26 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
     }
 
     @Override
-    public boolean placeOrder(Order order, List<OrderDetail> odList){
+    public boolean placeOrder(OrderDTO orderDTO, List<OrderDetailDTO> dtoList){
+
+        Order order = new Order(
+                orderDTO.getOrderId(),
+                orderDTO.getCusId(),
+                orderDTO.getOrderDate(),
+                orderDTO.getPaymentType(),
+                orderDTO.getAdvancedPayment(),
+                orderDTO.getTotalPayment()
+        );
+
+        ArrayList<OrderDetail> entityList = new ArrayList<>();
+        for (OrderDetailDTO dto : dtoList){
+            entityList.add(new OrderDetail(
+                    dto.getOrderId(),
+                    dto.getFurnId(),
+                    dto.getQty(),
+                    dto.getUnitPrice()
+            ));
+        }
 
         Connection connection = null;
         try {
@@ -107,10 +128,10 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
             boolean isOrderSaved = orderDAO.save(order);
             if (isOrderSaved) {
                 System.out.println("Order Query Executed To Pool");
-                boolean isOrderDetailSaved = orderDetailDAO.save(odList);
+                boolean isOrderDetailSaved = orderDetailDAO.save(entityList);
                 if (isOrderDetailSaved) {
                     System.out.println("Order Detail Query Executed To Pool");
-                    boolean isFurnQtyUpdate = furnitureDAO.updateQty(odList);
+                    boolean isFurnQtyUpdate = furnitureDAO.updateQty(entityList);
                     if (isFurnQtyUpdate) {
                         System.out.println("Furniture Query Executed To Pool");
 
@@ -119,7 +140,6 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
 
                         Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION,"Are You Sure To Place This Order ?",yes,no).showAndWait();
                         if (type.orElse(no) == yes){
-                            connection.commit();
                             connection.setAutoCommit(true);
                             return true;
                         }

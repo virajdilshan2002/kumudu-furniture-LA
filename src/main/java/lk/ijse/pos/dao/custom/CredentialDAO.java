@@ -9,8 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface CredentialDAO extends CrudDAO<Credential> {
-    boolean saveCredential(Credential credential) throws SQLException, ClassNotFoundException;
-
     Credential isUserExist(String userName) throws SQLException, ClassNotFoundException;
 
     boolean updatePassword(String userName, String newPassword) throws SQLException, ClassNotFoundException;

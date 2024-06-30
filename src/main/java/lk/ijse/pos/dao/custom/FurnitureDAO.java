@@ -13,7 +13,7 @@ public interface FurnitureDAO extends CrudDAO<Furniture> {
 
     boolean updateQty(OrderDetail od) throws SQLException, ClassNotFoundException;
 
-    boolean checkQty(String furnId, int qty) throws SQLException, ClassNotFoundException;
+    int checkAvailableQty(String furnId, int qty) throws SQLException, ClassNotFoundException;
 
     boolean updateImage(File file, String furnId) throws SQLException, ClassNotFoundException;
 

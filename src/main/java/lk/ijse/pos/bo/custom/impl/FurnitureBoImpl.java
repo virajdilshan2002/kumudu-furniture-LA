@@ -1,18 +1,23 @@
 package lk.ijse.pos.bo.custom.impl;
 
+import javafx.scene.control.Alert;
 import lk.ijse.pos.bo.custom.FurnitureBo;
+import lk.ijse.pos.dao.DAOFactory;
 import lk.ijse.pos.dao.custom.FurnitureDAO;
 import lk.ijse.pos.dao.custom.impl.FurnitureDAOImpl;
 import lk.ijse.pos.dto.FurnitureDTO;
 import lk.ijse.pos.entity.Furniture;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FurnitureBoImpl implements FurnitureBo {
 
-    FurnitureDAO furnitureDAO = new FurnitureDAOImpl();
+    FurnitureDAO furnitureDAO = (FurnitureDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.FURNITURE);
     @Override
     public List<FurnitureDTO> getAll() throws SQLException, ClassNotFoundException {
         List<Furniture> furnitures = furnitureDAO.getAll();
@@ -88,5 +93,10 @@ public class FurnitureBoImpl implements FurnitureBo {
                 furniture.getFurnQty()
         );
         return furnitureDTO;
+    }
+
+    @Override
+    public int checkAvailableQty(String furnId, int orderQty) throws SQLException, ClassNotFoundException {
+        return furnitureDAO.checkAvailableQty(furnId,orderQty);
     }
 }

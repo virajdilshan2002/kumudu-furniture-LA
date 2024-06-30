@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 public interface CustomerDAO extends CrudDAO<Customer> {
 
+    Customer searchByContact(String contact) throws SQLException, ClassNotFoundException;
+
     String getCurrentCusId() throws SQLException, ClassNotFoundException;
 
     String getNextCusId(String currentId);

@@ -4,6 +4,8 @@ import lk.ijse.pos.dao.SQLUtil;
 import lk.ijse.pos.dao.custom.CustomerDAO;
 import lk.ijse.pos.entity.Customer;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -67,6 +69,22 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public Customer search(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public Customer searchByContact(String contact) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM customer WHERE cusContact = ?",contact);
+
+        if (resultSet.next()){
+            String id = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            String email = resultSet.getString(4);
+            String contactNo = resultSet.getString(5);
+
+            return new Customer(id, name, address, email, contactNo);
+        }
         return null;
     }
 

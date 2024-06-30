@@ -1,5 +1,6 @@
 package lk.ijse.pos.dao.custom;
 
+import lk.ijse.pos.dao.CrudDAO;
 import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.entity.Order;
 import lk.ijse.pos.view.tdm.AdvanceSearchTm;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public interface OrderDAO {
+public interface OrderDAO extends CrudDAO<Order> {
     boolean pay(String orderId) throws SQLException, ClassNotFoundException;
 
     boolean refund(String id, List<AdvanceSearchTm> purchaseList) throws SQLException;

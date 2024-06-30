@@ -6,6 +6,7 @@ import javafx.scene.control.ButtonType;
 import lk.ijse.pos.bo.SuperBO;
 import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.FurnitureDTO;
+import lk.ijse.pos.dto.OrderDTO;
 import lk.ijse.pos.dto.OrderDetailDTO;
 import lk.ijse.pos.entity.Order;
 import lk.ijse.pos.entity.OrderDetail;
@@ -31,5 +32,5 @@ public interface PlaceOrderBo extends SuperBO {
     FurnitureDTO findItem(String code);
     String getCurrentOrderId() throws SQLException, ClassNotFoundException;
     String getNextOrderId(String currentOrderId);
-    boolean placeOrder(Order order, List<OrderDetail> odList);
+    boolean placeOrder(OrderDTO order, List<OrderDetailDTO> odList);
 }

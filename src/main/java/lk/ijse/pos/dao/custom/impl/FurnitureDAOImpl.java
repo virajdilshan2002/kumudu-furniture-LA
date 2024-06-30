@@ -1,6 +1,5 @@
 package lk.ijse.pos.dao.custom.impl;
 
-import javafx.scene.control.Alert;
 import lk.ijse.pos.dao.SQLUtil;
 import lk.ijse.pos.dao.custom.FurnitureDAO;
 import lk.ijse.pos.entity.Furniture;
@@ -109,18 +108,17 @@ public class FurnitureDAOImpl implements FurnitureDAO {
     }
 
     @Override
-    public boolean checkQty(String furnId, int orderQty) throws SQLException, ClassNotFoundException {
+    public int checkAvailableQty(String furnId, int orderQty) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT furnQty FROM furniture WHERE furnId = ?", furnId);
 
         int qty = 0;
         if (rst.next()) {
             qty = rst.getInt(1);
             if (qty >= orderQty) {
-                return true;
+                return qty;
             }
         }
-        new Alert(Alert.AlertType.ERROR, "Quantity Not Available! Available Quantity Is : " + qty).show();
-        return false;
+        return qty;
     }
 
     @Override

@@ -55,16 +55,6 @@ public class CredentialDAOImpl implements CredentialDAO {
     }
 
     @Override
-    public boolean saveCredential(Credential credential) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("INSERT INTO credential VALUES(?, ?, ?, ?)",
-                credential.getUserName(),
-                credential.getFullName(),
-                credential.getEmail(),
-                credential.getPassword()
-        );
-    }
-
-    @Override
     public Credential isUserExist(String name) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM credential WHERE userName = ?", name);
         if (resultSet.next()){
