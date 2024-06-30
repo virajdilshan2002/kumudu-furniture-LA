@@ -30,6 +30,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static lk.ijse.pos.util.GenerateBill.getPDFFile;
+import static lk.ijse.pos.util.GenerateBill.viewBill;
+
 public class ViewCompletedOrderFormController {
     public AnchorPane rootNode;
     public TableColumn<?,?> colFurnId;
@@ -114,19 +117,7 @@ public class ViewCompletedOrderFormController {
     }
 
     public void btnGenerateBillClickOnAction(ActionEvent actionEvent) throws JRException, SQLException, ClassNotFoundException {
-        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/Order_Report.jrxml");
-        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("ORDERID",lblOrderId.getText());
-
-        JasperPrint jasperPrint =
-                JasperFillManager.fillReport(
-                        jasperReport,
-                        data,
-                        DBConnection.getDbConnection().getConnection());
-
-        JasperViewer.viewReport(jasperPrint,false);
+        viewBill(lblOrderId.getText());
     }
 
     public void btnRefundClickOnAction(ActionEvent actionEvent) {
@@ -152,26 +143,6 @@ public class ViewCompletedOrderFormController {
         }
     }
 
-    private File getBill() throws JRException, SQLException, ClassNotFoundException {
-        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/Order_Report.jrxml");
-        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("ORDERID", lblOrderId.getText());
-
-        JasperPrint jasperPrint =
-                JasperFillManager.fillReport(
-                        jasperReport,
-                        data,
-                        DBConnection.getDbConnection().getConnection());
-
-        // Export the report to a PDF file
-        File pdfFile = new File("Order Receipt.pdf");
-        JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFile.getAbsolutePath());
-
-        return pdfFile;
-    }
-
     public void btnSendBillClickOnAction(ActionEvent actionEvent) {
         String title = "Order Receipt - " + lblOrderId.getText();
         String subject = "Order Receipt";
@@ -185,7 +156,7 @@ public class ViewCompletedOrderFormController {
             Optional<ButtonType> type = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to send bill again?", yes, no).showAndWait();
 
             if (type.orElse(no) == yes) {
-                Mail.setMail(title, subject, msg, email, getBill());
+                Mail.sendMail(title, subject, msg, email, getPDFFile(lblOrderId.getText()));
             }
         } catch (JRException | SQLException | MessagingException | IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);

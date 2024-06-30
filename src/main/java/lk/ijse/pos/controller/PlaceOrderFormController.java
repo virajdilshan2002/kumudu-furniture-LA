@@ -486,30 +486,10 @@ public class PlaceOrderFormController {
         String email = customer.getEmail();
 
         try {
-            Mail.setMail(title, subject, msg, email, getPDFFile(lblOrderId.getText()));
+            Mail.sendMail(title, subject, msg, email, getPDFFile(lblOrderId.getText()));
         } catch (JRException | SQLException | MessagingException | IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    private File getBill() throws JRException, SQLException, ClassNotFoundException {
-        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/Order_Report.jrxml");
-        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("ORDERID", lblOrderId.getText());
-
-        JasperPrint jasperPrint =
-                JasperFillManager.fillReport(
-                        jasperReport,
-                        data,
-                        DBConnection.getDbConnection().getConnection());
-
-        // Export the report to a PDF file
-        File pdfFile = new File("Order Receipt.pdf");
-        JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFile.getAbsolutePath());
-
-        return pdfFile;
     }
 
     public void txtPaymentClickOnAction(ActionEvent actionEvent) {

@@ -65,7 +65,7 @@ public class Mail {
         }
     }
 
-    public static void setMail(String title, String subject, String body, String receiverMail, File pdfFile) throws MessagingException, IOException {
+    public static void sendMail(String title, String subject, String body, String receiverMail, File pdfFile) throws MessagingException, IOException {
         setUpServerProperties();
         MimeMessage mimeMessage = draftMail(title, subject, body, receiverMail, pdfFile);
         sendMail(mimeMessage);
