@@ -52,7 +52,7 @@ public class OrderDAOImpl implements OrderDAO {
                 order.getOrderId(),
                 order.getCusId(),
                 order.getOrderDate(),
-                order.getPaymentType(),
+                String.valueOf(order.getPaymentType()),
                 order.getAdvancedPayment(),
                 order.getTotalPayment()
         );

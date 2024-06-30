@@ -6,6 +6,7 @@ import javafx.scene.control.ButtonType;
 import lk.ijse.pos.bo.custom.PlaceOrderBo;
 import lk.ijse.pos.dao.DAOFactory;
 import lk.ijse.pos.dao.SQLUtil;
+import lk.ijse.pos.dao.custom.CustomerDAO;
 import lk.ijse.pos.dao.custom.FurnitureDAO;
 import lk.ijse.pos.dao.custom.OrderDAO;
 import lk.ijse.pos.dao.custom.OrderDetailDAO;
@@ -14,6 +15,8 @@ import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.FurnitureDTO;
 import lk.ijse.pos.dto.OrderDTO;
 import lk.ijse.pos.dto.OrderDetailDTO;
+import lk.ijse.pos.entity.Customer;
+import lk.ijse.pos.entity.Furniture;
 import lk.ijse.pos.entity.Order;
 import lk.ijse.pos.entity.OrderDetail;
 
@@ -30,10 +33,12 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
     OrderDAO orderDAO = (OrderDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ORDER);
     OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ORDER_DETAIL);
     FurnitureDAO furnitureDAO = (FurnitureDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.FURNITURE);
+    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.CUSTOMER);
 
     @Override
-    public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
-        return null;
+    public CustomerDTO searchCustomerByContact(String contact) throws SQLException, ClassNotFoundException {
+        Customer customer = customerDAO.searchByContact(contact);
+        return new CustomerDTO(customer.getId(), customer.getName(), customer.getAddress(), customer.getEmail(), customer.getContact());
     }
 
     @Override
@@ -62,8 +67,22 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
     }
 
     @Override
-    public ArrayList<FurnitureDTO> getAllItems() throws SQLException, ClassNotFoundException {
-        return null;
+    public List<FurnitureDTO> getAllFurnitureItems() throws SQLException, ClassNotFoundException {
+        List<Furniture> furnitures = furnitureDAO.getAll();
+
+        List<FurnitureDTO> furnitureDTOS = new ArrayList<>();
+        for (Furniture furniture : furnitures) {
+            furnitureDTOS.add(new FurnitureDTO(
+                    furniture.getFurnId(),
+                    furniture.getImageFile(),
+                    furniture.getFurnDescription(),
+                    furniture.getFurnWoodType(),
+                    furniture.getFurnColor(),
+                    furniture.getFurnPrice(),
+                    furniture.getFurnQty()
+            ));
+        }
+        return furnitureDTOS;
     }
 
     @Override
@@ -152,7 +171,13 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
             connection.setAutoCommit(true);
             return false;
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return false;
         }
+    }
+
+    @Override
+    public int availableItemQty(String furnId, int orderQty) throws SQLException, ClassNotFoundException {
+        return furnitureDAO.checkAvailableQty(furnId,orderQty);
     }
 }

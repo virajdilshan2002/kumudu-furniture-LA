@@ -43,6 +43,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
+import static lk.ijse.pos.util.GenerateBill.getPDFFile;
 import static lk.ijse.pos.view.loadFXML.newStage;
 
 public class PlaceOrderFormController {
@@ -83,9 +84,9 @@ public class PlaceOrderFormController {
 
     private ObservableList<CartTm> cartList = FXCollections.observableArrayList();
 
-    FurnitureBo furnitureBo = (FurnitureBo) BOFactory.getInstance().getBO(BOFactory.BOType.FURNITURE);
+    /*FurnitureBo furnitureBo = (FurnitureBo) BOFactory.getInstance().getBO(BOFactory.BOType.FURNITURE);
+    CustomerBo customerBo = (CustomerBo) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);*/
     PlaceOrderBo placeOrderBo = (PlaceOrderBo) BOFactory.getInstance().getBO(BOFactory.BOType.PLACEORDER);
-    CustomerBo customerBo = (CustomerBo) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
 
     public void initialize(){
@@ -109,7 +110,7 @@ public class PlaceOrderFormController {
 
     private void loadItemList() {
         try {
-            itemList = furnitureBo.getAll();
+            itemList = placeOrderBo.getAllFurnitureItems();
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -251,7 +252,7 @@ public class PlaceOrderFormController {
 
     private void searchCustomer() {
         try {
-            customer = customerBo.searchByContact(txtContactNo.getText());
+            customer = placeOrderBo.searchCustomerByContact(txtContactNo.getText());
             if (customer != null) {
                 lblCusId.setText(customer.getId());
                 lblCusName.setText(customer.getName());
@@ -357,7 +358,7 @@ public class PlaceOrderFormController {
                 String furnId = lblFurnId.getText();
                 int orderQty = Integer.parseInt(txtQty.getText());
 
-                int availableQty = furnitureBo.checkAvailableQty(furnId, orderQty);
+                int availableQty = placeOrderBo.availableItemQty(furnId, orderQty);
                 if (availableQty > 0) {
                     return true;
                 }
@@ -410,7 +411,7 @@ public class PlaceOrderFormController {
             new Alert(Alert.AlertType.WARNING, "Please Select A Payment Type!").show();
             cmbPaymentType.requestFocus();
             return false;
-        } else if (paymentType.equals("Advance")) {
+        } else if (paymentType.equals(PaymentType.ADVANCE)) {
             if (txtPayment.getText().trim().isEmpty()) {
                 new Alert(Alert.AlertType.WARNING, "Please Enter Payment Amount!").show();
                 txtPayment.requestFocus();
@@ -436,13 +437,8 @@ public class PlaceOrderFormController {
             String cusId = lblCusId.getText();
             String orderDate = lblDate.getText();
             paymentType = cmbPaymentType.getValue();
-            double payment;
 
-            if (paymentType.equals(PaymentType.CASH)){
-                payment = Double.parseDouble(lblTotal.getText());
-            }else {
-                payment = Double.parseDouble(txtPayment.getText());
-            }
+            double payment = paymentType.equals(PaymentType.CASH) ? Double.parseDouble(lblTotal.getText()) : Double.parseDouble(txtPayment.getText());
             double total = Double.parseDouble(lblTotal.getText());
 
             OrderDTO order;
@@ -467,6 +463,7 @@ public class PlaceOrderFormController {
             if (placeOrderBo.placeOrder(order,odList)) {
                 new Alert(Alert.AlertType.INFORMATION, "Order Placed Successfully!").show();
 
+                //Send Email if customer has an email
                 if (customer.getEmail() != null){
                     sendReceipt();
                 }
@@ -489,9 +486,9 @@ public class PlaceOrderFormController {
         String email = customer.getEmail();
 
         try {
-            Mail.setMail(title, subject, msg, email, getBill());
+            Mail.setMail(title, subject, msg, email, getPDFFile(lblOrderId.getText()));
         } catch (JRException | SQLException | MessagingException | IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

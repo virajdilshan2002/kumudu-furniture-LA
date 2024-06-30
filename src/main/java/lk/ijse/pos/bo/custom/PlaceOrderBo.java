@@ -12,16 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface PlaceOrderBo extends SuperBO {
-    CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException;
+    CustomerDTO searchCustomerByContact(String contact) throws SQLException, ClassNotFoundException;
     FurnitureDTO searchItem(String code) throws SQLException, ClassNotFoundException;
     boolean existItem(String code) throws SQLException, ClassNotFoundException;
     boolean existCustomer(String code) throws SQLException, ClassNotFoundException;
     String generateOrderID() throws SQLException, ClassNotFoundException ;
     ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException;
-    ArrayList<FurnitureDTO> getAllItems() throws SQLException, ClassNotFoundException;
+    List<FurnitureDTO> getAllFurnitureItems() throws SQLException, ClassNotFoundException;
     boolean placeOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails);
     FurnitureDTO findItem(String code);
     String getLastOrderId() throws SQLException, ClassNotFoundException;
     String generateNewOrderId() throws SQLException, ClassNotFoundException;
     boolean placeOrder(OrderDTO order, List<OrderDetailDTO> odList);
+    int availableItemQty(String furnId, int orderQty) throws SQLException, ClassNotFoundException;
 }
