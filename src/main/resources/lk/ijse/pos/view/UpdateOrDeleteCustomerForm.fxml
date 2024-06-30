@@ -30,17 +30,17 @@
                         <Font name="SansSerif Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXButton buttonType="RAISED" layoutX="132.0" layoutY="338.0" onAction="#btnDeleteClickOnAction" prefHeight="30.0" prefWidth="80.0" styleClass="refundButton" stylesheets="@../asset/css/stylesheet.css" text="DELETE" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" layoutX="132.0" layoutY="338.0" onAction="#btnDeleteClickOnAction" prefHeight="30.0" prefWidth="80.0" styleClass="refundButton" stylesheets="@../assets/css/stylesheet.css" text="DELETE" textFill="WHITE">
                      <font>
                         <Font name="Agency FB Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutX="220.0" layoutY="338.0" onAction="#btnUpdateClickOnAction" prefHeight="30.0" prefWidth="80.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="UPDATE" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" layoutX="220.0" layoutY="338.0" onAction="#btnUpdateClickOnAction" prefHeight="30.0" prefWidth="80.0" styleClass="defaultButton" stylesheets="@../assets/css/stylesheet.css" text="UPDATE" textFill="WHITE">
                      <font>
                         <Font name="Agency FB Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" layoutX="248.0" layoutY="33.0" onAction="#btnClearClickOnAction" styleClass="refundButton" stylesheets="@../asset/css/stylesheet.css" text="CLEAR">
+                  <JFXButton buttonType="RAISED" layoutX="248.0" layoutY="33.0" onAction="#btnClearClickOnAction" styleClass="refundButton" stylesheets="@../assets/css/stylesheet.css" text="CLEAR">
                      <font>
                         <Font name="Agency FB Bold" size="13.0" />
                      </font>
@@ -67,22 +67,22 @@
                   </JFXTextField>
                   <ImageView fx:id="imgEmailOk" fitHeight="25.0" fitWidth="25.0" layoutX="272.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/check_mark.gif" />
+                        <Image url="@../assets/icon/check_mark.gif" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="imgContactOk" fitHeight="25.0" fitWidth="25.0" layoutX="272.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/check_mark.gif" />
+                        <Image url="@../assets/icon/check_mark.gif" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="imgContactError" fitHeight="25.0" fitWidth="25.0" layoutX="272.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/warning.png" />
+                        <Image url="@../assets/icon/warning.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="imgEmailError" fitHeight="25.0" fitWidth="25.0" layoutX="272.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/warning.png" />
+                        <Image url="@../assets/icon/warning.png" />
                      </image>
                   </ImageView>
                </children>

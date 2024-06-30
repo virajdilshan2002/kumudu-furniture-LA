@@ -17,7 +17,7 @@
             <Font name="SansSerif Bold" size="30.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="75.0" layoutY="424.0" onAction="#btnSignUpClickOnAction" prefHeight="36.0" prefWidth="250.0" styleClass="loginButton" stylesheets="@../asset/css/stylesheet.css" text="Sign Up" textAlignment="CENTER">
+      <JFXButton buttonType="RAISED" layoutX="75.0" layoutY="424.0" onAction="#btnSignUpClickOnAction" prefHeight="36.0" prefWidth="250.0" styleClass="loginButton" stylesheets="@../assets/css/stylesheet.css" text="Sign Up" textAlignment="CENTER">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
@@ -42,7 +42,7 @@
       </JFXTextField>
       <ImageView accessibleRole="BUTTON" fitHeight="35.0" fitWidth="35.0" layoutX="42.0" layoutY="40.0" onMouseClicked="#imgBackOnMouseClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../asset/icon/left-arrow.png" />
+            <Image url="@../assets/icon/left-arrow.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -60,12 +60,12 @@
       </JFXPasswordField>
       <ImageView fx:id="imgPwError" fitHeight="25.0" fitWidth="25.0" layoutX="300.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../asset/icon/warning.png" />
+            <Image url="@../assets/icon/warning.png" />
          </image>
       </ImageView>
       <ImageView fx:id="imgEmailError" fitHeight="25.0" fitWidth="25.0" layoutX="300.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../asset/icon/warning.png" />
+            <Image url="@../assets/icon/warning.png" />
          </image>
       </ImageView>
    </children>

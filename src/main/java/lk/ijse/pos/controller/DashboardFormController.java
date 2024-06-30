@@ -127,14 +127,14 @@ public class DashboardFormController {
     }
 
     public void btnCompletedOrdersClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/CompletedOrdersForm.fxml"));
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/CompletedOrdersForm.fxml"));
 
         this.rootNode.getChildren().clear();
         this.rootNode.getChildren().add(dashboardPane);
     }
 
     public void btnOrdersToBePaidClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/PendingOrdersForm.fxml"));
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/PendingOrdersForm.fxml"));
 
         this.rootNode.getChildren().clear();
         this.rootNode.getChildren().add(dashboardPane);

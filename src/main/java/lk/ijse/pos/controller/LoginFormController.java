@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,17 +42,17 @@ public class LoginFormController {
     }
 
     private void setLoginBackgroundImage() {
-        Image image = new Image(getClass().getResourceAsStream("/asset/pic/loginImage.jpg"));
+        Image image = new Image(getClass().getResourceAsStream("/lk/ijse/pos/assets/pic/loginImage.jpg"));
         imgBackground.setImage(image);
     }
 
     private void setSignUpBackgroundImage() {
-        Image image = new Image(getClass().getResourceAsStream("/asset/pic/signup.jpg"));
+        Image image = new Image(getClass().getResourceAsStream("/lk/ijse/pos/assets/pic/signup.jpg"));
         imgBackground.setImage(image);
     }
 
     private void setForgotPwBackgroundImage() {
-        Image image = new Image(getClass().getResourceAsStream("/asset/pic/forgotPwImage.jpg"));
+        Image image = new Image(getClass().getResourceAsStream("/lk/ijse/pos/assets/pic/forgotPwImage.jpg"));
         imgBackground.setImage(image);
     }
 
@@ -119,7 +118,7 @@ public class LoginFormController {
     }
 
     private void navigateToDashboard() throws IOException {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/MainForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/lk/ijse/pos/view/MainForm.fxml"));
         AnchorPane rootNode = loader.load();
         Scene scene = new Scene(rootNode);
 
@@ -130,7 +129,7 @@ public class LoginFormController {
     }
 
     public void linkSignUpClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/SignUpForm.fxml"));
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/SignUpForm.fxml"));
 
         this.leftNode.getChildren().clear();
         this.leftNode.getChildren().add(rootNode);
@@ -147,7 +146,7 @@ public class LoginFormController {
     }
 
     public void linkForgotPwClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/ForgotPasswordForm.fxml"));
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/ForgotPasswordForm.fxml"));
 
         this.leftNode.getChildren().clear();
         this.leftNode.getChildren().add(rootNode);

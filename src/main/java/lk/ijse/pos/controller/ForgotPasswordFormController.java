@@ -126,7 +126,7 @@ public class ForgotPasswordFormController {
     }
 
     private void loadLoginForm() throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/LoginForm.fxml"));
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/LoginForm.fxml"));
         Scene scene = new Scene(rootNode);
 
         Stage stage = (Stage) this.leftNode.getScene().getWindow();

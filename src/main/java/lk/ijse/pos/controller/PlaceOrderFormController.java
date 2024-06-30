@@ -260,7 +260,7 @@ public class PlaceOrderFormController {
     }
 
     public void btnAddNewCustomerClickOnAction(ActionEvent actionEvent) throws IOException {
-        newStage("/view/AddCustomerForm.fxml", "Add New Customer Form");
+        newStage("/lk/ijse/pos/view/AddCustomerForm.fxml", "Add New Customer Form");
     }
 
     public void btnAddToCartClickOnAction(ActionEvent actionEvent) {

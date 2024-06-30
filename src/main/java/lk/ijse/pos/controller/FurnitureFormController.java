@@ -94,7 +94,7 @@ public class FurnitureFormController {
                 btnView.setButtonType(JFXButton.ButtonType.RAISED);
 
                 btnView.setOnAction((e) -> {
-                    FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/ViewItem.fxml"));
+                    FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/lk/ijse/pos/view/ViewItem.fxml"));
                     AnchorPane centerNode;
                     try {
                         centerNode = loader.load();

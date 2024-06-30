@@ -91,7 +91,7 @@ public class CustomerFormController {
 
             btnUpdate.setOnAction((e) ->{
 
-                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/UpdateOrDeleteCustomerForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/lk/ijse/pos/view/UpdateOrDeleteCustomerForm.fxml"));
                 AnchorPane rootNode = null;
                 try {
                     rootNode = loader.load();

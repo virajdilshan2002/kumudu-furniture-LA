@@ -22,19 +22,19 @@
                         <Font name="SansSerif Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="130.0" styleClass="paddingLabel" stylesheets="@../asset/css/stylesheet.css" text="BALANCE" textFill="#454545">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="130.0" styleClass="paddingLabel" stylesheets="@../assets/css/stylesheet.css" text="BALANCE" textFill="#454545">
                      <font>
                         <Font name="Agency FB Bold" size="18.0" />
                      </font>
                   </Label>
                   <ImageView fitHeight="30.0" fitWidth="39.0" layoutX="6.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/icons8-spinner.gif" />
+                        <Image url="@../assets/icon/icons8-spinner.gif" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <JFXButton buttonType="RAISED" layoutX="640.0" layoutY="97.0" onAction="#btnPayClickOnAction" prefHeight="30.0" prefWidth="130.0" styleClass="payButton" stylesheets="@../asset/css/stylesheet.css" text="PAY">
+            <JFXButton buttonType="RAISED" layoutX="640.0" layoutY="97.0" onAction="#btnPayClickOnAction" prefHeight="30.0" prefWidth="130.0" styleClass="payButton" stylesheets="@../assets/css/stylesheet.css" text="PAY">
                <font>
                   <Font name="Agency FB Bold" size="15.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="480.0" layoutY="97.0" onAction="#btnRefundClickOnAction" prefHeight="30.0" prefWidth="130.0" styleClass="refundButton" stylesheets="@../asset/css/stylesheet.css" text="REFUND">
+            <JFXButton buttonType="RAISED" layoutX="480.0" layoutY="97.0" onAction="#btnRefundClickOnAction" prefHeight="30.0" prefWidth="130.0" styleClass="refundButton" stylesheets="@../assets/css/stylesheet.css" text="REFUND">
                <font>
                   <Font name="Agency FB Bold" size="15.0" />
                </font>
@@ -57,14 +57,14 @@
                         <Font name="SansSerif Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="130.0" styleClass="paddingLabel" stylesheets="@../asset/css/stylesheet.css" text="PAID" textFill="#454545">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="130.0" styleClass="paddingLabel" stylesheets="@../assets/css/stylesheet.css" text="PAID" textFill="#454545">
                      <font>
                         <Font name="Agency FB Bold" size="18.0" />
                      </font>
                   </Label>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="2.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/check_mark.gif" />
+                        <Image url="@../assets/icon/check_mark.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -76,7 +76,7 @@
                <graphic>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/bill.gif" />
+                        <Image url="@../assets/icon/bill.gif" />
                      </image>
                   </ImageView>
                </graphic>
@@ -103,20 +103,20 @@
                   </Label>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/user.png" />
+                        <Image url="@../assets/icon/user.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/id-badge.png" />
+                        <Image url="@../assets/icon/id-badge.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/circle-phone.png" />
+                        <Image url="@../assets/icon/circle-phone.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" styleClass="paddingLabel" stylesheets="@../asset/css/stylesheet.css" text="CUSTOMER" textFill="#454545">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" styleClass="paddingLabel" stylesheets="@../assets/css/stylesheet.css" text="CUSTOMER" textFill="#454545">
                      <font>
                         <Font name="Agency FB Bold" size="18.0" />
                      </font>
@@ -142,20 +142,20 @@
                   </Label>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="6.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/calendar.png" />
+                        <Image url="@../assets/icon/calendar.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="6.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/id-badge1.png" />
+                        <Image url="@../assets/icon/id-badge1.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="6.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/document-paid.png" />
+                        <Image url="@../assets/icon/document-paid.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="80.0" styleClass="paddingLabel" stylesheets="@../asset/css/stylesheet.css" text="ORDER" textFill="#454545">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="80.0" styleClass="paddingLabel" stylesheets="@../assets/css/stylesheet.css" text="ORDER" textFill="#454545">
                      <font>
                         <Font name="Agency FB Bold" size="18.0" />
                      </font>
@@ -171,17 +171,17 @@
                   </Label>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="9.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/usd-circle.png" />
+                        <Image url="@../assets/icon/usd-circle.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="130.0" styleClass="paddingLabel" stylesheets="@../asset/css/stylesheet.css" text="NET TOTAL" textFill="#454545">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="130.0" styleClass="paddingLabel" stylesheets="@../assets/css/stylesheet.css" text="NET TOTAL" textFill="#454545">
                      <font>
                         <Font name="Agency FB Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <JFXButton buttonType="RAISED" layoutX="806.0" layoutY="127.0" onAction="#btnSendBillClickOnAction" prefHeight="30.0" prefWidth="130.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="SEND BILL">
+            <JFXButton buttonType="RAISED" layoutX="806.0" layoutY="127.0" onAction="#btnSendBillClickOnAction" prefHeight="30.0" prefWidth="130.0" styleClass="defaultButton" stylesheets="@../assets/css/stylesheet.css" text="SEND BILL">
                <font>
                   <Font name="Agency FB Bold" size="15.0" />
                </font>
@@ -191,7 +191,7 @@
             </JFXButton>
          </children>
       </Pane>
-      <TableView fx:id="tblAdSearch" layoutX="25.0" layoutY="195.0" prefHeight="280.0" prefWidth="950.0" styleClass="table" stylesheets="@../asset/css/stylesheet.css">
+      <TableView fx:id="tblAdSearch" layoutX="25.0" layoutY="195.0" prefHeight="280.0" prefWidth="950.0" styleClass="table" stylesheets="@../assets/css/stylesheet.css">
          <columns>
             <TableColumn fx:id="colFurnId" prefWidth="132.79998779296875" text="Furn Id" />
             <TableColumn fx:id="colFurnDesc" prefWidth="242.40000915527344" text="Furn Description" />

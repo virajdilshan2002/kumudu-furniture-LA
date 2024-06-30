@@ -20,12 +20,12 @@
    <children>
       <Pane layoutY="55.0" maxHeight="713.0" maxWidth="1100.0" minHeight="713.0" minWidth="1100.0" prefHeight="713.0" prefWidth="1100.0" style="-fx-background-color: #f5f5f5;">
          <children>
-            <Label alignment="CENTER" layoutX="23.0" layoutY="35.0" prefHeight="40.0" prefWidth="300.0" styleClass="tblLabel" stylesheets="@../asset/css/stylesheet.css" text="ALL COMPLETED ORDERS">
+            <Label alignment="CENTER" layoutX="23.0" layoutY="35.0" prefHeight="40.0" prefWidth="300.0" styleClass="tblLabel" stylesheets="@../assets/css/stylesheet.css" text="ALL COMPLETED ORDERS">
                <font>
                   <Font name="Agency FB Bold" size="20.0" />
                </font>
             </Label>
-            <TableView fx:id="tblCompletedOrders" layoutX="23.0" layoutY="75.0" prefHeight="625.0" prefWidth="1055.0" styleClass="table" stylesheets="@../asset/css/stylesheet.css">
+            <TableView fx:id="tblCompletedOrders" layoutX="23.0" layoutY="75.0" prefHeight="625.0" prefWidth="1055.0" styleClass="table" stylesheets="@../assets/css/stylesheet.css">
               <columns>
                 <TableColumn fx:id="colOrderId" prefWidth="136.8000144958496" text="Order Id" />
                   <TableColumn fx:id="colCusId" prefWidth="159.19996643066406" text="Customer Id" />
@@ -40,7 +40,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <TextField fx:id="txtSearch" layoutX="857.0" layoutY="23.0" onAction="#txtSearchClickOnAction" prefHeight="38.0" prefWidth="100.0" promptText="Order ID" styleClass="text" stylesheets="@../asset/css/text_field.css">
+            <TextField fx:id="txtSearch" layoutX="857.0" layoutY="23.0" onAction="#txtSearchClickOnAction" prefHeight="38.0" prefWidth="100.0" promptText="Order ID" styleClass="text" stylesheets="@../assets/css/text_field.css">
                <font>
                   <Font name="Agency FB Bold" size="15.0" />
                </font>
@@ -52,14 +52,14 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <JFXButton buttonType="RAISED" graphicTextGap="5.0" layoutX="966.0" layoutY="23.0" onAction="#btnSearchClickOnAction" prefHeight="38.0" prefWidth="110.0" styleClass="searchButton1" stylesheets="@../asset/css/stylesheet.css" text="S E A R C H" textAlignment="CENTER">
+            <JFXButton buttonType="RAISED" graphicTextGap="5.0" layoutX="966.0" layoutY="23.0" onAction="#btnSearchClickOnAction" prefHeight="38.0" prefWidth="110.0" styleClass="searchButton1" stylesheets="@../assets/css/stylesheet.css" text="S E A R C H" textAlignment="CENTER">
                <font>
                   <Font name="Agency FB Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/search.png" />
+                        <Image url="@../assets/icon/search.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -71,7 +71,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/icons8-refresh-96.png" />
+                        <Image url="@../assets/icon/icons8-refresh-96.png" />
                      </image>
                   </ImageView>
                </graphic>

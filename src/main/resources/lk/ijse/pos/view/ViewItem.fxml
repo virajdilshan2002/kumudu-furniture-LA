@@ -21,14 +21,14 @@
          <children>
             <ImageView fx:id="imgItem" fitHeight="400.0" fitWidth="400.0" layoutX="94.0" layoutY="57.0" pickOnBounds="true">
                <image>
-                  <Image url="@../asset/icon/coins.png" />
+                  <Image url="@../assets/icon/coins.png" />
                </image>
             </ImageView>
             <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="84.0" layoutY="417.0" onAction="#btnOpenImage" prefHeight="53.0" prefWidth="45.0" ripplerFill="WHITE" style="-fx-background-color: ffffff; -fx-background-radius: 100;" text="View">
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/maximize.gif" />
+                        <Image url="@../assets/icon/maximize.gif" />
                      </image>
                   </ImageView>
                </graphic>
@@ -36,32 +36,32 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <Label layoutX="546.0" layoutY="189.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Item Id" textFill="#4d4d4d">
+            <Label layoutX="546.0" layoutY="189.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../assets/css/stylesheet.css" text="Item Id" textFill="#4d4d4d">
                <font>
                   <Font name="Agency FB Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="546.0" layoutY="239.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Item Description" textFill="#4d4d4d">
+            <Label layoutX="546.0" layoutY="239.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../assets/css/stylesheet.css" text="Item Description" textFill="#4d4d4d">
                <font>
                   <Font name="Agency FB Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="546.0" layoutY="285.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Wood/Material Type" textFill="#4d4d4d">
+            <Label layoutX="546.0" layoutY="285.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../assets/css/stylesheet.css" text="Wood/Material Type" textFill="#4d4d4d">
                <font>
                   <Font name="Agency FB Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="546.0" layoutY="377.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Unit Price" textFill="#4d4d4d">
+            <Label layoutX="546.0" layoutY="377.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../assets/css/stylesheet.css" text="Unit Price" textFill="#4d4d4d">
                <font>
                   <Font name="Agency FB Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="546.0" layoutY="427.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Available Stock" textFill="#4d4d4d">
+            <Label layoutX="546.0" layoutY="427.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../assets/css/stylesheet.css" text="Available Stock" textFill="#4d4d4d">
                <font>
                   <Font name="Agency FB Bold" size="19.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnUpdateDetails" buttonType="RAISED" layoutX="866.0" layoutY="474.0" onAction="#btnUpdateDetailsClickOnAction" prefHeight="35.0" prefWidth="130.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="UPDATE DETAILS" textFill="#4d4d4d">
+            <JFXButton fx:id="btnUpdateDetails" buttonType="RAISED" layoutX="866.0" layoutY="474.0" onAction="#btnUpdateDetailsClickOnAction" prefHeight="35.0" prefWidth="130.0" styleClass="defaultButton" stylesheets="@../assets/css/stylesheet.css" text="UPDATE DETAILS" textFill="#4d4d4d">
                <font>
                   <Font name="Agency FB Bold" size="16.0" />
                </font>
@@ -69,7 +69,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="228.0" layoutY="484.0" onAction="#btnUpdateImage" prefHeight="46.0" prefWidth="133.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="UPDATE IMAGE" textFill="#4d4d4d">
+            <JFXButton buttonType="RAISED" layoutX="228.0" layoutY="484.0" onAction="#btnUpdateImage" prefHeight="46.0" prefWidth="133.0" styleClass="defaultButton" stylesheets="@../assets/css/stylesheet.css" text="UPDATE IMAGE" textFill="#4d4d4d">
                <font>
                   <Font name="Agency FB Bold" size="19.0" />
                </font>
@@ -85,37 +85,37 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXToggleButton>
-            <Label fx:id="lblItemId" layoutX="756.0" layoutY="189.0" prefHeight="30.0" prefWidth="240.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="id" textFill="#4d4d4d">
+            <Label fx:id="lblItemId" layoutX="756.0" layoutY="189.0" prefHeight="30.0" prefWidth="240.0" styleClass="leftPaddingLabel" stylesheets="@../assets/css/stylesheet.css" text="id" textFill="#4d4d4d">
                <font>
                   <Font name="SansSerif Bold" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtItemDesc" layoutX="756.0" layoutY="238.0" onAction="#txtItemDescClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Description" styleClass="text" stylesheets="@../asset/css/text_field.css">
+            <TextField fx:id="txtItemDesc" layoutX="756.0" layoutY="238.0" onAction="#txtItemDescClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Description" styleClass="text" stylesheets="@../assets/css/text_field.css">
                <font>
                   <Font name="SansSerif Regular" size="13.0" />
                </font></TextField>
-            <TextField fx:id="txtItemType" layoutX="756.0" layoutY="284.0" onAction="#txtItemTypeClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Material Type" styleClass="text" stylesheets="@../asset/css/text_field.css">
+            <TextField fx:id="txtItemType" layoutX="756.0" layoutY="284.0" onAction="#txtItemTypeClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Material Type" styleClass="text" stylesheets="@../assets/css/text_field.css">
                <font>
                   <Font name="SansSerif Regular" size="13.0" />
                </font></TextField>
-            <TextField fx:id="txtUnitPrice" layoutX="756.0" layoutY="376.0" onAction="#txtUnitPriceClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Unit Price" styleClass="text" stylesheets="@../asset/css/text_field.css">
+            <TextField fx:id="txtUnitPrice" layoutX="756.0" layoutY="376.0" onAction="#txtUnitPriceClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Unit Price" styleClass="text" stylesheets="@../assets/css/text_field.css">
                <font>
                   <Font name="SansSerif Regular" size="13.0" />
                </font></TextField>
-            <TextField fx:id="txtStock" layoutX="756.0" layoutY="426.0" onAction="#txtStockClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Stock" styleClass="text" stylesheets="@../asset/css/text_field.css">
+            <TextField fx:id="txtStock" layoutX="756.0" layoutY="426.0" onAction="#txtStockClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Stock" styleClass="text" stylesheets="@../assets/css/text_field.css">
                <font>
                   <Font name="SansSerif Regular" size="13.0" />
                </font></TextField>
-            <Label layoutX="546.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../asset/css/stylesheet.css" text="Item Color" textFill="#4d4d4d">
+            <Label layoutX="546.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" styleClass="leftPaddingLabel" stylesheets="@../assets/css/stylesheet.css" text="Item Color" textFill="#4d4d4d">
                <font>
                   <Font name="Agency FB Bold" size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtColor" layoutX="756.0" layoutY="329.0" onAction="#txtColorClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Color" styleClass="text" stylesheets="@../asset/css/text_field.css">
+            <TextField fx:id="txtColor" layoutX="756.0" layoutY="329.0" onAction="#txtColorClickOnAction" prefHeight="30.0" prefWidth="240.0" promptText="Color" styleClass="text" stylesheets="@../assets/css/text_field.css">
                <font>
                   <Font name="SansSerif Regular" size="13.0" />
                </font></TextField>
-            <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="752.0" layoutY="474.0" onAction="#btnDeleteClickOnAction" prefHeight="35.0" prefWidth="104.0" styleClass="refundButton" stylesheets="@../asset/css/stylesheet.css" text="DELETE ITEM" textFill="WHITE">
+            <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="752.0" layoutY="474.0" onAction="#btnDeleteClickOnAction" prefHeight="35.0" prefWidth="104.0" styleClass="refundButton" stylesheets="@../assets/css/stylesheet.css" text="DELETE ITEM" textFill="WHITE">
                <font>
                   <Font name="Agency FB Bold" size="16.0" />
                </font>

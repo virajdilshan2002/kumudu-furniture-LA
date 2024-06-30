@@ -78,7 +78,7 @@ public class PendingOrdersFormController {
             btnDetails.setPrefSize(70, 20);
 
             btnDetails.setOnAction((e) ->{
-                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/ViewPendingOrderForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/lk/ijse/pos/view/ViewPendingOrderForm.fxml"));
                 AnchorPane rootNode = null;
                 try {
                     rootNode = loader.load();

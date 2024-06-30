@@ -21,7 +21,7 @@
          <children>
             <ImageView fitHeight="268.0" fitWidth="269.0" layoutX="798.0" layoutY="289.0" opacity="0.53" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../asset/logo/cabinet.png" />
+                  <Image url="@../assets/logo/cabinet.png" />
                </image>
                <effect>
                   <Reflection fraction="0.76" topOffset="5.0" topOpacity="0.69" />
@@ -66,7 +66,7 @@
                   </Label>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="75.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/progress.gif" />
+                        <Image url="@../assets/icon/progress.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -92,7 +92,7 @@
                   </Label>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="73.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/icon/sofa.gif" />
+                        <Image url="@../assets/icon/sofa.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -106,7 +106,7 @@
             </Pane>
             <Group layoutX="410.0" layoutY="475.0">
                <children>
-                  <JFXButton contentDisplay="TOP" graphicTextGap="10.0" layoutX="15.0" layoutY="17.0" onAction="#btnCompletedOrdersClickOnAction" prefHeight="170.0" prefWidth="300.0" styleClass="dashboardButton" stylesheets="@../asset/css/stylesheet.css" text="COMPLETED ORDERS">
+                  <JFXButton contentDisplay="TOP" graphicTextGap="10.0" layoutX="15.0" layoutY="17.0" onAction="#btnCompletedOrdersClickOnAction" prefHeight="170.0" prefWidth="300.0" styleClass="dashboardButton" stylesheets="@../assets/css/stylesheet.css" text="COMPLETED ORDERS">
                      <font>
                         <Font name="Agency FB Bold" size="20.0" />
                      </font>
@@ -115,7 +115,7 @@
                            <children>
                               <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../asset/icon/success.png" />
+                                    <Image url="@../assets/icon/success.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="lblCompletedOrdersCount" alignment="CENTER" layoutX="170.0" prefHeight="56.0" prefWidth="56.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 100;" text="5">
@@ -134,11 +134,11 @@
             </Group>
             <Group layoutX="410.0" layoutY="274.0">
                <children>
-                  <JFXButton contentDisplay="TOP" graphicTextGap="10.0" layoutX="15.0" layoutY="17.0" onAction="#btnOrdersToBePaidClickOnAction" prefHeight="170.0" prefWidth="300.0" styleClass="dashboardButton" stylesheets="@../asset/css/stylesheet.css" text="PENDING ORDERS">
+                  <JFXButton contentDisplay="TOP" graphicTextGap="10.0" layoutX="15.0" layoutY="17.0" onAction="#btnOrdersToBePaidClickOnAction" prefHeight="170.0" prefWidth="300.0" styleClass="dashboardButton" stylesheets="@../assets/css/stylesheet.css" text="PENDING ORDERS">
                      <graphic>
                         <ImageView fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../asset/icon/pending.png" />
+                              <Image url="@../assets/icon/pending.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -167,7 +167,7 @@
                <children>
                   <ImageView fitHeight="180.0" fitWidth="176.0" layoutX="-52.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../asset/logo/invoice.png" />
+                        <Image url="@../assets/logo/invoice.png" />
                      </image>
                      <effect>
                         <Blend mode="SOFT_LIGHT">
@@ -177,7 +177,7 @@
                         </Blend>
                      </effect>
                   </ImageView>
-                  <JFXButton fx:id="btnGenerate" buttonType="RAISED" layoutX="124.0" layoutY="273.0" onAction="#btnGenerateClickOnAction" prefHeight="50.0" prefWidth="150.0" styleClass="defaultButton" stylesheets="@../asset/css/stylesheet.css" text="GENERATE" textFill="#454545">
+                  <JFXButton fx:id="btnGenerate" buttonType="RAISED" layoutX="124.0" layoutY="273.0" onAction="#btnGenerateClickOnAction" prefHeight="50.0" prefWidth="150.0" styleClass="defaultButton" stylesheets="@../assets/css/stylesheet.css" text="GENERATE" textFill="#454545">
                      <font>
                         <Font name="Agency FB" size="19.0" />
                      </font>
