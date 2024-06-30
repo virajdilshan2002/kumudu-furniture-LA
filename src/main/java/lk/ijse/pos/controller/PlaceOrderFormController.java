@@ -79,10 +79,7 @@ public class PlaceOrderFormController {
 
     private ObservableList<CartTm> cartList = FXCollections.observableArrayList();
 
-    /*FurnitureBo furnitureBo = (FurnitureBo) BOFactory.getInstance().getBO(BOFactory.BOType.FURNITURE);
-    CustomerBo customerBo = (CustomerBo) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);*/
     PlaceOrderBo placeOrderBo = (PlaceOrderBo) BOFactory.getInstance().getBO(BOFactory.BOType.PLACEORDER);
-
 
     public void initialize(){
         setCellValueFactory();

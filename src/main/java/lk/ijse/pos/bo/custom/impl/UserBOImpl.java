@@ -12,6 +12,12 @@ import java.sql.SQLException;
 public class UserBOImpl implements UserBO {
 
     UserDAO userDAO = (UserDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.USER);
+
+    @Override
+    public boolean add(User user) throws SQLException, ClassNotFoundException {
+        return userDAO.add(user);
+    }
+
     @Override
     public UserDTO isUserExist(String userName) throws SQLException, ClassNotFoundException {
         User user = userDAO.isUserExist(userName);

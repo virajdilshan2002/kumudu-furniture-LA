@@ -8,6 +8,7 @@ import lk.ijse.pos.dao.custom.impl.FurnitureDAOImpl;
 import lk.ijse.pos.dto.FurnitureDTO;
 import lk.ijse.pos.entity.Furniture;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,5 +104,10 @@ public class FurnitureBoImpl implements FurnitureBo {
     @Override
     public int getFurnitureCount() throws SQLException, ClassNotFoundException {
         return furnitureDAO.getFurnitureCount();
+    }
+
+    @Override
+    public boolean updateImage(File file, String furnId) throws SQLException, ClassNotFoundException {
+        return furnitureDAO.updateImage(file,furnId);
     }
 }

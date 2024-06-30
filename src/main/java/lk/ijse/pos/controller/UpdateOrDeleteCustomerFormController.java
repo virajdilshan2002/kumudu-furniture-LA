@@ -10,8 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
-import lk.ijse.pos.dao.custom.CustomerDAO;
-import lk.ijse.pos.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.CustomerBo;
 import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.util.Regex;
@@ -34,7 +34,7 @@ public class UpdateOrDeleteCustomerFormController {
     public ImageView imgContactError;
     public ImageView imgEmailError;
 
-    CustomerDAO customerDAO = new CustomerDAOImpl();
+    CustomerBo customerBo = (CustomerBo) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
     public void initialize(CustomerDTO customer){
         lblCusId.setText(customer.getId());
@@ -68,7 +68,7 @@ public class UpdateOrDeleteCustomerFormController {
 
         if (result.orElse(no) == yes) {
             try {
-                boolean isDeleted = customerDAO.delete(cusId);
+                boolean isDeleted = customerBo.delete(cusId);
                 if (isDeleted) {
                     new Alert(Alert.AlertType.INFORMATION,"Customer Deleted!").show();
                     clearTextFields();
@@ -105,10 +105,10 @@ public class UpdateOrDeleteCustomerFormController {
                 Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure To Update This Customer?", yes, no).showAndWait();
                 if (result.orElse(no) == yes) {
                     if (email.isEmpty() || email == null) email = null;
-                    Customer customer = new Customer(id,name,address, email, contact);
+                    CustomerDTO customer = new CustomerDTO(id,name,address, email, contact);
 
                     try {
-                        boolean isUpdated = customerDAO.update(customer);
+                        boolean isUpdated = customerBo.update(customer);
                         if (isUpdated) {
                             new Alert(Alert.AlertType.INFORMATION,"Customer Updated!").show();
                             clearTextFields();

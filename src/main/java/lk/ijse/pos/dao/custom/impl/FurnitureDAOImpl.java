@@ -60,7 +60,14 @@ public class FurnitureDAOImpl implements FurnitureDAO {
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+        String currentFurnId = getCurrentFurnId();
+        if (currentFurnId != null) {
+            String[] split = currentFurnId.split("F");
+            int id = Integer.parseInt(split[1], 10); // Explicitly specify radix 10
+            return "F" + String.format("%05d", ++id);
+        }else {
+            return "F00001";
+        }
     }
 
     @Override
@@ -130,11 +137,6 @@ public class FurnitureDAOImpl implements FurnitureDAO {
     }
 
     @Override
-    public String generateFurnId() throws SQLException {
-        return null;
-    }
-
-    @Override
     public int getFurnitureCount() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT COUNT(*) FROM furniture");
         if (resultSet.next()) {
@@ -151,17 +153,6 @@ public class FurnitureDAOImpl implements FurnitureDAO {
             return resultSet.getString(1);
         }
         return null;
-    }
-
-    @Override
-    public String getNextFurnId(String currentFurnId) {
-        if (currentFurnId != null) {
-            String[] split = currentFurnId.split("F");
-            int id = Integer.parseInt(split[1], 10); // Explicitly specify radix 10
-            return "F" + String.format("%05d", ++id);
-        }else {
-            return "F00001";
-        }
     }
 
     @Override

@@ -17,13 +17,9 @@ public interface FurnitureDAO extends CrudDAO<Furniture> {
 
     boolean updateImage(File file, String furnId) throws SQLException, ClassNotFoundException;
 
-    String generateFurnId() throws SQLException;
-
     int getFurnitureCount() throws SQLException, ClassNotFoundException;
 
     String getCurrentFurnId() throws SQLException, ClassNotFoundException;
-
-    String getNextFurnId(String currentFurnId);
 
     File convertInputStreamToFile(InputStream inputStream);
 }

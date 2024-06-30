@@ -16,13 +16,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.custom.FurnitureDAO;
-import lk.ijse.pos.dao.custom.impl.FurnitureDAOImpl;
-import lk.ijse.pos.entity.Furniture;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.FurnitureBo;
+import lk.ijse.pos.dto.FurnitureDTO;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.view.tdm.FurnitureTm;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,27 +48,22 @@ public class FurnitureFormController {
     public TextField txtFurnPrice;
     public TextField txtQty;
     public Label lblFurnId;
-    private JFXButton selectedButton;
-    private static List<Furniture> itemList;
+    private static List<FurnitureDTO> itemList;
     private File file;
     private FileInputStream fis;
-    private final Desktop desktop = Desktop.getDesktop();
 
-    FurnitureDAO furnitureDAO = new FurnitureDAOImpl();
+    FurnitureBo furnitureBo = (FurnitureBo) BOFactory.getInstance().getBO(BOFactory.BOType.FURNITURE);
 
     public void initialize() throws IOException, SQLException {
         setCellValueFactory();
         getAllFurnitureItems();
-        setNextFurnId();
-
-        /*testCall();*/
+        generateNewFurnId();
     }
 
-    private void setNextFurnId() {
+    private void generateNewFurnId() {
         try {
-            String currentId = furnitureDAO.getCurrentFurnId();
-            String nextId = furnitureDAO.getNextFurnId(currentId);
-            lblFurnId.setText(nextId);
+            String newFurnId = furnitureBo.generateNewID();
+            lblFurnId.setText(newFurnId);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -78,8 +72,8 @@ public class FurnitureFormController {
     private void getAllFurnitureItems() {
         ObservableList<FurnitureTm> obList = FXCollections.observableArrayList();
         try {
-            itemList = furnitureDAO.getAll();
-            for (Furniture item : itemList) {
+            itemList = furnitureBo.getAll();
+            for (FurnitureDTO item : itemList) {
                 String id = item.getFurnId();
                 String desc = item.getFurnDescription();
                 String woodType = item.getFurnWoodType();
@@ -168,15 +162,15 @@ public class FurnitureFormController {
             double price = Double.parseDouble(txtFurnPrice.getText());
             int qty = Integer.parseInt(txtQty.getText());
 
-            Furniture furniture = new Furniture(id, file, desc, woodType, color, price, qty);
+            FurnitureDTO furniture = new FurnitureDTO(id, file, desc, woodType, color, price, qty);
 
-            boolean isSaved = furnitureDAO.add(furniture);
+            boolean isSaved = furnitureBo.add(furniture);
             if (isSaved) {
                 new Alert(Alert.AlertType.INFORMATION, "Item added successfully!").show();
                 clearTextFields();
                 getAllFurnitureItems();
                 tblItems.refresh();
-                setNextFurnId();
+                generateNewFurnId();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Item not saved!").show();
             }

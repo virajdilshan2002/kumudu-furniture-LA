@@ -12,8 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.custom.UserDAO;
-import lk.ijse.pos.dao.custom.impl.UserDAOImpl;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.UserBO;
 import lk.ijse.pos.entity.User;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.util.TextField;
@@ -32,8 +32,7 @@ public class SignUpFormController {
     public JFXPasswordField txtPassword;
     public ImageView imgPwError;
     public ImageView imgEmailError;
-
-    UserDAO userDAO = new UserDAOImpl();
+    UserBO userBo = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOType.USER);
 
     public void initialize(){
         imgPwError.setVisible(false);
@@ -49,7 +48,7 @@ public class SignUpFormController {
 
         if (isValid()) {
             try {
-                boolean isSaved = userDAO.add(new User(userName,
+                boolean isSaved = userBo.add(new User(userName,
                         fullName,
                         email,
                         password)

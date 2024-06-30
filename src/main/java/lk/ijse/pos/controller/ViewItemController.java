@@ -11,8 +11,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.custom.FurnitureDAO;
-import lk.ijse.pos.dao.custom.impl.FurnitureDAOImpl;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.FurnitureBo;
+import lk.ijse.pos.dto.FurnitureDTO;
 import lk.ijse.pos.entity.Furniture;
 import lk.ijse.pos.view.tdm.FurnitureTm;
 
@@ -37,10 +38,10 @@ public class ViewItemController {
     public JFXToggleButton togBtn;
     public TextField txtColor;
     public JFXButton btnDelete;
-    private Furniture item;
+    private FurnitureDTO item;
     private final Desktop desktop = Desktop.getDesktop();
 
-    FurnitureDAO furnitureDAO = new FurnitureDAOImpl();
+    FurnitureBo furnitureBo = (FurnitureBo) BOFactory.getInstance().getBO(BOFactory.BOType.FURNITURE);
     public void initialize(FurnitureTm furnitureTm) {
         getItem(furnitureTm.getFurnId());
         setDetails();
@@ -90,7 +91,7 @@ public class ViewItemController {
 
     private void getItem(String id) {
         try {
-            item = furnitureDAO.search(id);
+            item = furnitureBo.search(id);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -121,7 +122,7 @@ public class ViewItemController {
 
             if (addType.orElse(no)==yes){
                 try {
-                    boolean isUpdated = furnitureDAO.updateImage(file, item.getFurnId());
+                    boolean isUpdated = furnitureBo.updateImage(file, item.getFurnId());
                     if (isUpdated){
                         item.setImageFile(file);
                         new Alert(Alert.AlertType.INFORMATION,"Item Image Updated Successfully!").show();
@@ -167,14 +168,14 @@ public class ViewItemController {
         double price = Double.parseDouble(txtUnitPrice.getText());
         int qty = Integer.parseInt(txtStock.getText());
 
-        Furniture updatedItem = new Furniture(id,null,desc,woodType,color,price,qty);
+        FurnitureDTO updatedItem = new FurnitureDTO(id,null,desc,woodType,color,price,qty);
         try {
             ButtonType yes = new ButtonType("Yes",ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No",ButtonBar.ButtonData.CANCEL_CLOSE);
 
             Optional<ButtonType> addType = new Alert(Alert.AlertType.CONFIRMATION,"Are You Sure To Update Item ?",yes,no).showAndWait();
             if (addType.orElse(no)==yes){
-                boolean isUpdated = furnitureDAO.update(updatedItem);
+                boolean isUpdated = furnitureBo.update(updatedItem);
                 if (isUpdated){
                     new Alert(Alert.AlertType.INFORMATION,"Item Updated Successfull!").show();
                     getItem(id);
@@ -202,7 +203,7 @@ public class ViewItemController {
         if (type.orElse(no)==yes){
             String id = lblItemId.getText();
             try {
-                boolean isDeleted = furnitureDAO.delete(id);
+                boolean isDeleted = furnitureBo.delete(id);
                 if (isDeleted){
                     new Alert(Alert.AlertType.INFORMATION,"Item Deleted Successfully!").show();
                     Stage stage = (Stage) centerNode.getScene().getWindow();
