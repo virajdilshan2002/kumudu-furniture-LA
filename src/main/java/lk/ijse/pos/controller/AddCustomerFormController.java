@@ -11,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import lk.ijse.pos.dao.DAOFactory;
 import lk.ijse.pos.dao.custom.CustomerDAO;
 import lk.ijse.pos.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.pos.entity.Customer;
@@ -35,7 +36,7 @@ public class AddCustomerFormController {
     public ImageView imgContactError;
     public ImageView imgEmailError;
 
-    CustomerDAO customerDAO = new CustomerDAOImpl();
+    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.CUSTOMER);
 
     public void initialize() {
         setNextCusId();
@@ -51,9 +52,8 @@ public class AddCustomerFormController {
 
     private void setNextCusId() {
         try {
-            String currentCusId = customerDAO.getCurrentCusId();
-            String nextId = customerDAO.getNextCusId(currentCusId);
-            lblCusId.setText(nextId);
+            String newCusId = customerDAO.generateNewID();
+            lblCusId.setText(newCusId);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

@@ -59,7 +59,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+        String currentId = getCurrentCusId();
+        if (currentId != null) {
+            String[] split = currentId.split("C");
+            int id = Integer.parseInt(split[1], 10); // Explicitly specify radix 10
+            return "C" + String.format("%05d", ++id);
+        }else {
+            return "C00001";
+        }
     }
 
     @Override
@@ -95,17 +102,6 @@ public class CustomerDAOImpl implements CustomerDAO {
             return rst.getString(1);
         }
         return null;
-    }
-
-    @Override
-    public String getNextCusId(String currentId) {
-        if (currentId != null) {
-            String[] split = currentId.split("C");
-            int id = Integer.parseInt(split[1], 10); // Explicitly specify radix 10
-            return "C" + String.format("%05d", ++id);
-        }else {
-            return "C00001";
-        }
     }
 
     @Override

@@ -1,10 +1,7 @@
 package lk.ijse.pos.dao;
 
 import lk.ijse.pos.bo.custom.impl.FurnitureBoImpl;
-import lk.ijse.pos.dao.custom.impl.CustomerDAOImpl;
-import lk.ijse.pos.dao.custom.impl.FurnitureDAOImpl;
-import lk.ijse.pos.dao.custom.impl.OrderDAOImpl;
-import lk.ijse.pos.dao.custom.impl.OrderDetailDAOImpl;
+import lk.ijse.pos.dao.custom.impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -12,11 +9,13 @@ public class DAOFactory {
     private static FurnitureDAOImpl furnitureDAO;
     private static OrderDAOImpl orderDAO;
     private static OrderDetailDAOImpl orderDetailDAO;
+    private static CredentialDAOImpl credentialDAO;
     private DAOFactory(){
         customerDAO = new CustomerDAOImpl();
         furnitureDAO = new FurnitureDAOImpl();
         orderDAO = new OrderDAOImpl();
         orderDetailDAO = new OrderDetailDAOImpl();
+        credentialDAO = new CredentialDAOImpl();
     }
 
     public static DAOFactory getInstance(){
@@ -25,11 +24,12 @@ public class DAOFactory {
 
     //enum
     public enum DAOType{
-        CUSTOMER,FURNITURE,ORDER,ORDER_DETAIL
+        CREDENTIAL,CUSTOMER,FURNITURE,ORDER,ORDER_DETAIL
     }
 
     public CrudDAO getDAO(DAOType type){
         return switch (type){
+            case CREDENTIAL -> credentialDAO;
             case CUSTOMER -> customerDAO;
             case FURNITURE -> furnitureDAO;
             case ORDER -> orderDAO;

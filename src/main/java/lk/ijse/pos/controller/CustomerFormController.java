@@ -15,8 +15,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.custom.CustomerDAO;
-import lk.ijse.pos.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.CustomerBo;
+import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.view.tdm.CustomerTm;
@@ -49,10 +50,10 @@ public class CustomerFormController {
     public ImageView imgContactError;
     public ImageView imgEmailError;
     public TextField txtSearch;
-    private List<Customer> customerList = new ArrayList<>();
+    private List<CustomerDTO> customerList = new ArrayList<>();
     private ObservableList<CustomerTm> tmList;
 
-    CustomerDAO customerDAO = new CustomerDAOImpl();
+    CustomerBo customerBo = (CustomerBo) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
     public void initialize() {
         setCellValueFactory();
@@ -70,14 +71,14 @@ public class CustomerFormController {
 
     private void loadCustomerTable() {
         try {
-            customerList = customerDAO.getAll();
+            customerList = customerBo.getAll();
         }catch (SQLException | ClassNotFoundException e){
             throw new RuntimeException(e);
         }
 
         tmList = FXCollections.observableArrayList();
 
-        for(Customer customer : customerList){
+        for(CustomerDTO customer : customerList){
             String id = customer.getId();
             String name = customer.getName();
             String address = customer.getAddress();
@@ -135,9 +136,8 @@ public class CustomerFormController {
 
     private void setNextCusId() {
         try {
-            String currentCusId = customerDAO.getCurrentCusId();
-            String nextCusId = customerDAO.getNextCusId(currentCusId);
-            lblCusId.setText(nextCusId);
+            String newCusId = customerBo.generateNewID();
+            lblCusId.setText(newCusId);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -176,7 +176,7 @@ public class CustomerFormController {
             boolean isValid = isValid();
             if (isValid) {
                 if (email.isEmpty()) email = null;
-                Customer customer = new Customer(id, name, address, email, contact);
+                CustomerDTO customer = new CustomerDTO(id, name, address, email, contact);
                 try {
                     ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
                     ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -184,7 +184,7 @@ public class CustomerFormController {
                     Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure To Add This Customer?", yes, no).showAndWait();
 
                     if (result.orElse(no) == yes) {
-                        boolean isSaved = customerDAO.add(customer);
+                        boolean isSaved = customerBo.add(customer);
                         if (isSaved) {
                             new Alert(Alert.AlertType.INFORMATION, "Customer Saved Successfully!").show();
                             clearTextFields();

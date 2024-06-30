@@ -25,4 +25,5 @@ public interface FurnitureBo extends SuperBO {
      String generateNewID() throws SQLException, ClassNotFoundException;
      FurnitureDTO search(String code) throws SQLException, ClassNotFoundException;
      int checkAvailableQty(String furnId, int orderQty) throws SQLException, ClassNotFoundException;
+     int getFurnitureCount() throws SQLException, ClassNotFoundException;
 }

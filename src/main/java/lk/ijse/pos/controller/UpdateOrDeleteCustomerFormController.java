@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import lk.ijse.pos.dao.custom.CustomerDAO;
 import lk.ijse.pos.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.util.TextField;
@@ -35,7 +36,7 @@ public class UpdateOrDeleteCustomerFormController {
 
     CustomerDAO customerDAO = new CustomerDAOImpl();
 
-    public void initialize(Customer customer){
+    public void initialize(CustomerDTO customer){
         lblCusId.setText(customer.getId());
         txtName.setText(customer.getName());
         txtAddress.setText(customer.getAddress());

@@ -11,11 +11,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.FurnitureBo;
 import lk.ijse.pos.dao.custom.CustomerDAO;
-import lk.ijse.pos.dao.custom.FurnitureDAO;
 import lk.ijse.pos.dao.custom.OrderDAO;
 import lk.ijse.pos.dao.custom.impl.CustomerDAOImpl;
-import lk.ijse.pos.dao.custom.impl.FurnitureDAOImpl;
 import lk.ijse.pos.dao.custom.impl.OrderDAOImpl;
 import lk.ijse.pos.db.DBConnection;
 import net.sf.jasperreports.engine.*;
@@ -42,7 +42,7 @@ public class DashboardFormController {
     public Label lblDayStatus;
     public JFXTextField txtSearchReceipt;
 
-    FurnitureDAO furnitureDAO = new FurnitureDAOImpl();
+    FurnitureBo furnitureBo = (FurnitureBo) BOFactory.getInstance().getBO(BOFactory.BOType.FURNITURE);
     CustomerDAO customerDAO = new CustomerDAOImpl();
     OrderDAO orderDAO = new OrderDAOImpl();
 
@@ -110,7 +110,7 @@ public class DashboardFormController {
 
     private void setFurnitureCount() {
         try {
-            int count = furnitureDAO.getFurnitureCount();
+            int count = furnitureBo.getFurnitureCount();
             lblFurnCount.setText(String.valueOf(count));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);

@@ -14,9 +14,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.custom.CredentialDAO;
-import lk.ijse.pos.dao.custom.impl.CredentialDAOImpl;
-import lk.ijse.pos.entity.Credential;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.UserBO;
+import lk.ijse.pos.dto.CredentialDTO;
 import lk.ijse.pos.util.Mail;
 
 import javax.mail.MessagingException;
@@ -54,10 +54,10 @@ public class ForgotPasswordFormController {
     @FXML
     private JFXTextField txtUserName;
 
-    private Credential user = null;
+    private CredentialDTO user = null;
     private Integer otp = null;
 
-    CredentialDAO credentialDAO = new CredentialDAOImpl();
+    UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOType.USER);
 
     public void initialize() {
         setDisable();
@@ -106,7 +106,7 @@ public class ForgotPasswordFormController {
             if (addType.orElse(no) == yes){
                 String newPassword = txtPassword.getText();
                 try {
-                    boolean isUpdated = credentialDAO.updatePassword(user.getUserName(), newPassword);
+                    boolean isUpdated = userBO.updatePassword(user.getUserName(), newPassword);
                     if (isUpdated) {
                         new Alert(Alert.AlertType.INFORMATION, "Password Updated Successfully!").show();
                         loadLoginForm();
@@ -189,7 +189,7 @@ public class ForgotPasswordFormController {
     public void btnSearchUserNameClickOnAction(ActionEvent actionEvent) {
         String userName = txtUserName.getText();
         try {
-            user = credentialDAO.isUserExist(userName);
+            user = userBO.isUserExist(userName);
             if (user != null) {
                 lblEmail.setText(user.getEmail());
 

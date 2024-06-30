@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.pos.dao.DAOFactory;
 import lk.ijse.pos.dao.custom.OrderDAO;
 import lk.ijse.pos.dao.custom.impl.OrderDAOImpl;
 import lk.ijse.pos.entity.Order;
@@ -37,7 +38,7 @@ public class CompletedOrdersFormController {
     List<Order> orderList;
     ObservableList<OrderTm> obList;
 
-    OrderDAO orderDAO = new OrderDAOImpl();
+    OrderDAO orderDAO = (OrderDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ORDER);
     public void initialize(){
         setCellValueFactory();
         loadCompletedOrdersTable();

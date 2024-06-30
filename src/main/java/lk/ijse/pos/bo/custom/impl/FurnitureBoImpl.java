@@ -99,4 +99,9 @@ public class FurnitureBoImpl implements FurnitureBo {
     public int checkAvailableQty(String furnId, int orderQty) throws SQLException, ClassNotFoundException {
         return furnitureDAO.checkAvailableQty(furnId,orderQty);
     }
+
+    @Override
+    public int getFurnitureCount() throws SQLException, ClassNotFoundException {
+        return furnitureDAO.getFurnitureCount();
+    }
 }
