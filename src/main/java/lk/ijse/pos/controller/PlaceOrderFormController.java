@@ -19,10 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import lk.ijse.pos.bo.BOFactory;
-import lk.ijse.pos.bo.custom.CustomerBo;
-import lk.ijse.pos.bo.custom.FurnitureBo;
 import lk.ijse.pos.bo.custom.PlaceOrderBo;
-import lk.ijse.pos.db.DBConnection;
 import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.FurnitureDTO;
 import lk.ijse.pos.dto.OrderDTO;
@@ -33,8 +30,6 @@ import lk.ijse.pos.util.PaymentType;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.view.tdm.CartTm;
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import javax.mail.MessagingException;
 import java.io.File;
@@ -44,7 +39,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static lk.ijse.pos.util.GenerateBill.getPDFFile;
-import static lk.ijse.pos.view.loadFXML.newStage;
+import static lk.ijse.pos.util.loadFXML.newStage;
 
 public class PlaceOrderFormController {
 

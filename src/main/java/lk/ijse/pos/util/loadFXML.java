@@ -1,4 +1,4 @@
-package lk.ijse.pos.view;
+package lk.ijse.pos.util;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
