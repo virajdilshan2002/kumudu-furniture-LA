@@ -5,6 +5,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import lk.ijse.pos.dao.SQLUtil;
 import lk.ijse.pos.dao.custom.OrderDAO;
+import lk.ijse.pos.db.DBConnection;
 import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.entity.Order;
 import lk.ijse.pos.util.PaymentType;
@@ -34,7 +35,33 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public boolean refund(String id, List<AdvanceSearchTm> purchaseList) throws SQLException {
-        return false;
+        Connection connection;
+        try {
+            connection = DBConnection.getDbConnection().getConnection();
+            connection.setAutoCommit(false);
+
+            String updateFurnQtySql = "UPDATE furniture SET furnQty = furnQty + ? WHERE furnId = ?";
+
+            for (AdvanceSearchTm tm : purchaseList) {
+                boolean isUpdated = SQLUtil.execute(updateFurnQtySql, tm.getQty(), tm.getFurnId());
+                if (!isUpdated) {
+                    connection.rollback();
+                    return false;
+                }
+            }
+
+            String deleteOrderSql = "DELETE FROM orders WHERE orderId = ?";
+            boolean isDeleted = SQLUtil.execute(deleteOrderSql, id);
+            if (!isDeleted) {
+                connection.rollback();
+                return false;
+            }
+            connection.commit();
+            connection.setAutoCommit(true);
+            return true;
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

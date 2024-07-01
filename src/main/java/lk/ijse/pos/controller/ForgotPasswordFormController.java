@@ -18,6 +18,7 @@ import lk.ijse.pos.bo.BOFactory;
 import lk.ijse.pos.bo.custom.UserBO;
 import lk.ijse.pos.dto.UserDTO;
 import lk.ijse.pos.util.Mail;
+import lk.ijse.pos.util.NavigateTo;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -126,13 +127,8 @@ public class ForgotPasswordFormController {
     }
 
     private void loadLoginForm() throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/LoginForm.fxml"));
-        Scene scene = new Scene(rootNode);
-
-        Stage stage = (Stage) this.leftNode.getScene().getWindow();
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.setTitle("KUMUDU FURNITURE");
+        String path = "/lk/ijse/pos/view/LoginForm.fxml";
+        NavigateTo.children(path, this.leftNode);
     }
 
     @FXML

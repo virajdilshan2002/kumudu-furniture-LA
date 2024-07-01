@@ -58,4 +58,9 @@ public class CustomerBoImpl implements CustomerBo {
         Customer customer = customerDAO.searchByContact(id);
         return new CustomerDTO(customer.getId(), customer.getName(), customer.getAddress(), customer.getEmail(), customer.getContact());
     }
+
+    @Override
+    public int getCustomersCount() throws SQLException, ClassNotFoundException {
+        return customerDAO.getCustomersCount();
+    }
 }

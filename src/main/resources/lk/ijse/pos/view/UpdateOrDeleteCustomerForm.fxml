@@ -47,22 +47,22 @@
                   </JFXButton>
                   <JFXTextField fx:id="txtName" labelFloat="true" layoutX="50.0" layoutY="95.0" onAction="#txtNameClickOnAction" prefHeight="30.0" prefWidth="250.0" promptText="Name">
                      <font>
-                        <Font name="SansSerif Regular" size="14.0" />
+                        <Font name="SansSerif Regular" size="13.0" />
                      </font>
                   </JFXTextField>
                   <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="50.0" layoutY="158.0" onAction="#txtAddressClickOnAction" prefHeight="30.0" prefWidth="250.0" promptText="Address">
                      <font>
-                        <Font name="SansSerif Regular" size="14.0" />
+                        <Font name="SansSerif Regular" size="13.0" />
                      </font>
                   </JFXTextField>
                   <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="50.0" layoutY="285.0" onAction="#txtContactClickOnAction" onKeyReleased="#txtContactOnKeyRelesedAction" prefHeight="30.0" prefWidth="250.0" promptText="Contact no">
                      <font>
-                        <Font name="SansSerif Regular" size="14.0" />
+                        <Font name="SansSerif Regular" size="13.0" />
                      </font>
                   </JFXTextField>
                   <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="49.0" layoutY="221.0" onAction="#txtEmailClickOnAction" onKeyReleased="#txtEmailOnKeyRelesedAction" prefHeight="30.0" prefWidth="250.0" promptText="Email address">
                      <font>
-                        <Font name="SansSerif Regular" size="14.0" />
+                        <Font name="SansSerif Regular" size="13.0" />
                      </font>
                   </JFXTextField>
                   <ImageView fx:id="imgEmailOk" fitHeight="25.0" fitWidth="25.0" layoutX="272.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">

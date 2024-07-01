@@ -1,6 +1,5 @@
 package lk.ijse.pos.util;
 
-import javafx.event.ActionEvent;
 import lk.ijse.pos.db.DBConnection;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -14,7 +13,7 @@ import java.util.Map;
 
 public class GenerateBill {
     public static File getPDFFile(String orderId) throws JRException, SQLException, ClassNotFoundException {
-        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/Order_Report.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/lk/ijse/pos/report/Order_Report.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
         Map<String, Object> data = new HashMap<>();
@@ -34,7 +33,7 @@ public class GenerateBill {
     }
 
     public static void viewBill(String orderId) throws JRException, SQLException, ClassNotFoundException {
-        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/Order_Report.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/lk/ijse/pos/report/Order_Report.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
         Map<String, Object> data = new HashMap<>();

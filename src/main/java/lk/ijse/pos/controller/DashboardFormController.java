@@ -12,12 +12,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.CustomerBo;
 import lk.ijse.pos.bo.custom.FurnitureBo;
-import lk.ijse.pos.dao.custom.CustomerDAO;
-import lk.ijse.pos.dao.custom.OrderDAO;
-import lk.ijse.pos.dao.custom.impl.CustomerDAOImpl;
-import lk.ijse.pos.dao.custom.impl.OrderDAOImpl;
+import lk.ijse.pos.bo.custom.OrderBO;
 import lk.ijse.pos.db.DBConnection;
+import lk.ijse.pos.util.GenerateBill;
+import lk.ijse.pos.util.NavigateTo;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -43,8 +43,8 @@ public class DashboardFormController {
     public JFXTextField txtSearchReceipt;
 
     FurnitureBo furnitureBo = (FurnitureBo) BOFactory.getInstance().getBO(BOFactory.BOType.FURNITURE);
-    CustomerDAO customerDAO = new CustomerDAOImpl();
-    OrderDAO orderDAO = new OrderDAOImpl();
+    CustomerBo customerBo = (CustomerBo) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
+    OrderBO orderBo = (OrderBO) BOFactory.getInstance().getBO(BOFactory.BOType.ORDER);
 
     public void initialize() {
         setTime();
@@ -58,7 +58,7 @@ public class DashboardFormController {
 
     private void setCompletedOrdersCount() {
         try {
-            int count = orderDAO.getCompletedOrdersCount();
+            int count = orderBo.getCompletedOrdersCount();
             lblCompletedOrdersCount.setText(String.valueOf(count));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -68,7 +68,7 @@ public class DashboardFormController {
 
     private void setToBePaidOrdersCount() {
         try {
-            int count = orderDAO.getToBePaidOrdersCount();
+            int count = orderBo.getToBePaidOrdersCount();
             lblToBePaidOrdersCount.setText(String.valueOf(count));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -119,7 +119,7 @@ public class DashboardFormController {
 
     private void setCustomersCount() {
         try {
-            int count = customerDAO.getCustomersCount();
+            int count = customerBo.getCustomersCount();
             lblCustomersCount.setText(String.valueOf(count));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -127,40 +127,23 @@ public class DashboardFormController {
     }
 
     public void btnCompletedOrdersClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/CompletedOrdersForm.fxml"));
-
-        this.rootNode.getChildren().clear();
-        this.rootNode.getChildren().add(dashboardPane);
+        String path = "/lk/ijse/pos/view/CompletedOrdersForm.fxml";
+        NavigateTo.children(path, this.rootNode);
     }
 
     public void btnOrdersToBePaidClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/PendingOrdersForm.fxml"));
-
-        this.rootNode.getChildren().clear();
-        this.rootNode.getChildren().add(dashboardPane);
+        String path = "/lk/ijse/pos/view/PendingOrdersForm.fxml";
+        NavigateTo.children(path, this.rootNode);
     }
 
     public void btnGenerateClickOnAction(ActionEvent actionEvent) {
         String id = txtSearchReceipt.getText();
         try {
-            boolean isFound = orderDAO.isExistsOrder(id);
+            boolean isFound = orderBo.isExistsOrder(id);
             if (isFound) {
                 txtSearchReceipt.setFocusColor(Paint.valueOf("Green"));
                 txtSearchReceipt.setUnFocusColor(Paint.valueOf("Green"));
-
-                JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/Order_Report.jrxml");
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-                Map<String, Object> data = new HashMap<>();
-                data.put("ORDERID",id);
-
-                JasperPrint jasperPrint =
-                        JasperFillManager.fillReport(
-                                jasperReport,
-                                data,
-                                DBConnection.getDbConnection().getConnection());
-
-                JasperViewer.viewReport(jasperPrint,false);
+                GenerateBill.viewBill(id);
             } else {
                 txtSearchReceipt.setFocusColor(Paint.valueOf("Red"));
                 txtSearchReceipt.setUnFocusColor(Paint.valueOf("Red"));
@@ -178,7 +161,7 @@ public class DashboardFormController {
     public void txtSearchReceiptOnKeyRelesedAction(KeyEvent keyEvent) {
         String id = txtSearchReceipt.getText();
         try {
-            boolean isFound = orderDAO.isExistsOrder(id);
+            boolean isFound = orderBo.isExistsOrder(id);
             if (isFound) {
                 txtSearchReceipt.setFocusColor(Paint.valueOf("Green"));
                 txtSearchReceipt.setUnFocusColor(Paint.valueOf("Green"));

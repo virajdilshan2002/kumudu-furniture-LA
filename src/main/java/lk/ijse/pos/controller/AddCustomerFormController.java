@@ -11,10 +11,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.DAOFactory;
-import lk.ijse.pos.dao.custom.CustomerDAO;
-import lk.ijse.pos.dao.custom.impl.CustomerDAOImpl;
-import lk.ijse.pos.entity.Customer;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.CustomerBo;
+import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.util.TextField;
 
@@ -36,7 +35,7 @@ public class AddCustomerFormController {
     public ImageView imgContactError;
     public ImageView imgEmailError;
 
-    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.CUSTOMER);
+    CustomerBo customerBo = (CustomerBo) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
     public void initialize() {
         setNextCusId();
@@ -52,7 +51,7 @@ public class AddCustomerFormController {
 
     private void setNextCusId() {
         try {
-            String newCusId = customerDAO.generateNewID();
+            String newCusId = customerBo.generateNewID();
             lblCusId.setText(newCusId);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -78,22 +77,19 @@ public class AddCustomerFormController {
         String email = txtEmail.getText();
         String contact = txtContact.getText();
 
-        boolean isEmpty = checkDetails(name, address, contact);
-
-        if (!isEmpty){
-            boolean isValid = isValid();
-            if (isValid) {
+        if (!isEmpty()){
+            if (isValid()) {
+                if (email.isEmpty()) email = null;
                 ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
                 ButtonType no = new ButtonType("No",ButtonBar.ButtonData.CANCEL_CLOSE);
 
                 Optional<ButtonType> addType = new Alert(Alert.AlertType.INFORMATION,"Are You Sure To Add This Customer?",yes,no).showAndWait();
 
                 if (addType.orElse(no) == yes){
-                    if (email.isEmpty()) email = null;
-                    Customer customer = new Customer(id, name, address, email, contact);
+                    CustomerDTO customer = new CustomerDTO(id, name, address, email, contact);
 
                     try {
-                        boolean isSaved = customerDAO.add(customer);
+                        boolean isSaved = customerBo.add(customer);
                         if (isSaved) {
                             new Alert(Alert.AlertType.INFORMATION, "Customer Saved Successfully!").show();
                             Stage stage = (Stage) rootNode.getScene().getWindow();
@@ -109,14 +105,14 @@ public class AddCustomerFormController {
         }
     }
 
-    public boolean checkDetails(String name, String address, String contact) {
-        if (name.isEmpty()) {
+    public boolean isEmpty() {
+        if (txtName.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Customer Name cannot be empty").show();
             return true;
-        } else if (address.isEmpty()) {
+        } else if (txtAddress.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Customer Address cannot be empty").show();
             return true;
-        } else if (contact.isEmpty()) {
+        } else if (txtContact.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Customer Contact cannot be empty").show();
             return true;
         }

@@ -170,11 +170,8 @@ public class CustomerFormController {
         String email = txtEmail.getText();
         String contact = txtContact.getText();
 
-        boolean isEmpty = checkDetails(name, address, contact);
-
-        if (!isEmpty){
-            boolean isValid = isValid();
-            if (isValid) {
+        if (!isEmpty()){
+            if (isValid()) {
                 if (email.isEmpty()) email = null;
                 CustomerDTO customer = new CustomerDTO(id, name, address, email, contact);
                 try {
@@ -203,14 +200,14 @@ public class CustomerFormController {
         }
     }
 
-    public boolean checkDetails(String name, String address, String contact) {
-        if (name.isEmpty()) {
+    public boolean isEmpty() {
+        if (txtName.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Customer Name cannot be empty").show();
             return true;
-        } else if (address.isEmpty()) {
+        } else if (txtAddress.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Customer Address cannot be empty").show();
             return true;
-        } else if (contact.isEmpty()) {
+        } else if (txtContact.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Customer Contact cannot be empty").show();
             return true;
         }

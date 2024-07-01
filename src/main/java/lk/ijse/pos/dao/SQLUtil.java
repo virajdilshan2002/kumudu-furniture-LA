@@ -26,7 +26,7 @@ public class SQLUtil {
         }
     }
 
-    public static boolean addFurniture(String sql, Furniture item) throws SQLException, ClassNotFoundException {
+    public static boolean addFurnitureItem(String sql, Furniture item) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
@@ -46,7 +46,7 @@ public class SQLUtil {
         return pstm.executeUpdate() > 0;
     }
 
-    public static boolean updateImageFile(String sql, File file, String furnId) throws SQLException, ClassNotFoundException {
+    public static boolean updateItemImageFile(String sql, File file, String furnId) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 

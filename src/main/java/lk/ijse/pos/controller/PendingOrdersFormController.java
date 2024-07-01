@@ -14,9 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.DAOFactory;
-import lk.ijse.pos.dao.custom.OrderDAO;
-import lk.ijse.pos.dao.custom.impl.OrderDAOImpl;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.OrderBO;
+import lk.ijse.pos.dto.OrderDTO;
 import lk.ijse.pos.entity.Order;
 import lk.ijse.pos.util.PaymentType;
 import lk.ijse.pos.view.tdm.OrderTm;
@@ -27,7 +27,6 @@ import java.util.List;
 
 public class PendingOrdersFormController {
     public AnchorPane rootNode;
-    public AnchorPane centerNode;
     public TableView<OrderTm> tblToBePaidOrders;
     public TableColumn<?,?> colOrderId;
     public TableColumn<?,?> colCusId;
@@ -37,10 +36,10 @@ public class PendingOrdersFormController {
     public TableColumn<?,?> colDetails;
     public TextField txtSearch;
 
-    public List<Order> orderList;
+    public List<OrderDTO> orderList;
     ObservableList<OrderTm> obList;
 
-    OrderDAO orderDAO = (OrderDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ORDER);
+    OrderBO orderBo = (OrderBO) BOFactory.getInstance().getBO(BOFactory.BOType.ORDER);
 
     public void initialize() {
         setCellValueFactory();
@@ -60,12 +59,12 @@ public class PendingOrdersFormController {
         obList = FXCollections.observableArrayList();
 
         try {
-            orderList = orderDAO.getToBePaidOrders();
+            orderList = orderBo.getToBePaidOrders();
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        for (Order order : orderList) {
+        for (OrderDTO order : orderList) {
             String orderId = order.getOrderId();
             String cusId = order.getCusId();
             String orderDate = order.getOrderDate();
@@ -126,6 +125,6 @@ public class PendingOrdersFormController {
     }
 
     public void txtSearchClickOnAction(ActionEvent actionEvent) {
-
+        btnSearchClickOnAction(actionEvent);
     }
 }

@@ -16,7 +16,6 @@ public class Launcher extends Application {
         stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/LoginForm.fxml"))));
 
         stage.initStyle(StageStyle.UNDECORATED);
-        /*stage.setTitle("KUMUDU FURNITURE");*/
         stage.centerOnScreen();
         stage.show();
     }

@@ -14,10 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.pos.dao.DAOFactory;
-import lk.ijse.pos.dao.custom.OrderDAO;
-import lk.ijse.pos.dao.custom.impl.OrderDAOImpl;
+import lk.ijse.pos.bo.BOFactory;
+import lk.ijse.pos.bo.custom.OrderBO;
+import lk.ijse.pos.dto.OrderDTO;
 import lk.ijse.pos.entity.Order;
+import lk.ijse.pos.util.NavigateTo;
 import lk.ijse.pos.util.PaymentType;
 import lk.ijse.pos.view.tdm.OrderTm;
 
@@ -35,10 +36,10 @@ public class CompletedOrdersFormController {
     public TableColumn<?,?> colTotalPrice;
     public TextField txtSearch;
     public TableColumn<?,?> colDetails;
-    List<Order> orderList;
+    List<OrderDTO> orderList;
     ObservableList<OrderTm> obList;
 
-    OrderDAO orderDAO = (OrderDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ORDER);
+    OrderBO orderBo = (OrderBO) BOFactory.getInstance().getBO(BOFactory.BOType.ORDER);
     public void initialize(){
         setCellValueFactory();
         loadCompletedOrdersTable();
@@ -58,13 +59,13 @@ public class CompletedOrdersFormController {
 
         //get all completed orders
         try {
-            orderList = orderDAO.getCompletedOrdersList();
+            orderList = orderBo.getCompletedOrdersList();
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
         //add all orders to obList and table
-        for (Order order : orderList) {
+        for (OrderDTO order : orderList) {
             String orderId = order.getOrderId();
             String cusId = order.getCusId();
             String orderDate = order.getOrderDate();
@@ -79,6 +80,7 @@ public class CompletedOrdersFormController {
 
             btnDetails.setOnAction((e) ->{
                 FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/lk/ijse/pos/view/ViewCompletedOrderForm.fxml"));
+
                 AnchorPane rootNode = null;
                 try {
                     rootNode = loader.load();

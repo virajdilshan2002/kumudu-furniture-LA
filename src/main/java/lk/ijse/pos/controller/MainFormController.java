@@ -3,22 +3,21 @@ package lk.ijse.pos.controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import lk.ijse.pos.util.NavigateTo;
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class MainFormController {
-    public AnchorPane rootNode;
-    public AnchorPane centerNode;
-
+    @FXML
+    private AnchorPane rootNode;
+    @FXML
+    private AnchorPane centerNode;
     @FXML
     public JFXButton mainBtnDashboard;
     public JFXButton mainBtnPlaceOrder;
@@ -36,10 +35,8 @@ public class MainFormController {
     }
 
     private void loadDashboard() throws IOException {
-        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/DashboardForm.fxml"));
-
-        this.centerNode.getChildren().clear();
-        this.centerNode.getChildren().add(dashboardPane);
+        String path = "/lk/ijse/pos/view/DashboardForm.fxml";
+        NavigateTo.children(path, this.centerNode);
     }
 
     public void btnlogOutClickOnAction(ActionEvent actionEvent) throws IOException {
@@ -49,30 +46,20 @@ public class MainFormController {
         Optional<ButtonType> addType = new Alert(Alert.AlertType.INFORMATION,"Are You Sure To Log Out ?",yes,no).showAndWait();
 
         if (addType.orElse(no) == yes){
-            AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/LoginForm.fxml"));
-
-            Scene scene = new Scene(rootNode);
-
-            Stage stage = (Stage) this.rootNode.getScene().getWindow();
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.setTitle("KUMUDU FURNITURE");
+            String path = "/lk/ijse/pos/view/LoginForm.fxml";
+            NavigateTo.parent(path, rootNode);
         }
     }
 
     public void btnPlaceOrderClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane placeOrderPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/PlaceOrderForm.fxml"));
-
-        this.centerNode.getChildren().clear();
-        this.centerNode.getChildren().add(placeOrderPane);
+        String path = "/lk/ijse/pos/view/PlaceOrderForm.fxml";
+        NavigateTo.children(path, this.centerNode);
         handleSelection(mainBtnPlaceOrder);
     }
 
     public void btnFurnitureClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane FurniturePane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/FurnitureForm.fxml"));
-
-        this.centerNode.getChildren().clear();
-        this.centerNode.getChildren().add(FurniturePane);
+        String path = "/lk/ijse/pos/view/FurnitureForm.fxml";
+        NavigateTo.children(path, this.centerNode);
         handleSelection(mainBtnFurniture);
     }
 
@@ -90,34 +77,25 @@ public class MainFormController {
     }
 
     public void btnCustomerClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane customerPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/CustomerForm.fxml"));
-
-        this.centerNode.getChildren().clear();
-        this.centerNode.getChildren().add(customerPane);
+        String path = "/lk/ijse/pos/view/CustomerForm.fxml";
+        NavigateTo.children(path, this.centerNode);
         handleSelection(mainBtnCustomer);
     }
 
     public void btnDashboardClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/DashboardForm.fxml"));
-
-        this.centerNode.getChildren().clear();
-        this.centerNode.getChildren().add(dashboardPane);
+        loadDashboard();
         handleSelection(mainBtnDashboard);
     }
 
     public void mainBtnCompletedOrdersClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane placeOrderPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/CompletedOrdersForm.fxml"));
-
-        this.centerNode.getChildren().clear();
-        this.centerNode.getChildren().add(placeOrderPane);
+        String path = "/lk/ijse/pos/view/CompletedOrdersForm.fxml";
+        NavigateTo.children(path, this.centerNode);
         handleSelection(mainBtnCompletedOrders);
     }
 
     public void mainBtnPendingOrdersClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane placeOrderPane = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/PendingOrdersForm.fxml"));
-
-        this.centerNode.getChildren().clear();
-        this.centerNode.getChildren().add(placeOrderPane);
+        String path = "/lk/ijse/pos/view/PendingOrdersForm.fxml";
+        NavigateTo.children(path, this.centerNode);
         handleSelection(mainBtnPendingOrders);
     }
 }

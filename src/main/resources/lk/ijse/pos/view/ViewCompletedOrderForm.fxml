@@ -144,7 +144,7 @@
                   </JFXButton>
                </children>
             </Pane>
-            <JFXButton buttonType="RAISED" layoutX="793.0" layoutY="109.0" onAction="#btnSendBillClickOnAction" prefHeight="30.0" prefWidth="130.0" styleClass="defaultButton" stylesheets="@../assets/css/stylesheet.css" text="SEND BILL">
+            <JFXButton fx:id="btnSendBill" buttonType="RAISED" layoutX="793.0" layoutY="109.0" onAction="#btnSendBillClickOnAction" prefHeight="30.0" prefWidth="130.0" styleClass="defaultButton" stylesheets="@../assets/css/stylesheet.css" text="SEND BILL">
                <font>
                   <Font name="Agency FB Bold" size="15.0" />
                </font>

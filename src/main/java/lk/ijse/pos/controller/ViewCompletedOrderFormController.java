@@ -1,5 +1,6 @@
 package lk.ijse.pos.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +11,6 @@ import javafx.stage.Stage;
 import lk.ijse.pos.bo.BOFactory;
 import lk.ijse.pos.bo.custom.OrderBO;
 import lk.ijse.pos.dto.CustomerDTO;
-import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.util.Mail;
 import lk.ijse.pos.view.tdm.AdvanceSearchTm;
 import lk.ijse.pos.view.tdm.OrderTm;
@@ -40,7 +40,9 @@ public class ViewCompletedOrderFormController {
     public Label lblPaymentType;
     public Label lblCusId;
     public Label lblOrderDate;
-    private ObservableList<AdvanceSearchTm> purchaseList;
+    public JFXButton btnSendBill;
+    private ObservableList<AdvanceSearchTm> obList;
+    private List<AdvanceSearchTm> list;
     private OrderTm orderTm;
     private CustomerDTO customer;
 
@@ -53,7 +55,7 @@ public class ViewCompletedOrderFormController {
         this.orderTm = orderTm;
         getCustomer();
 
-        loadCOItemTable();
+        loadItemTable();
         initializeOtherDetails();
     }
 
@@ -61,19 +63,20 @@ public class ViewCompletedOrderFormController {
         try {
             this.customer = orderBO.getCustomer(orderTm.getCusId());
         } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.WARNING,"Customer Not Found!").show();
             throw new RuntimeException(e);
         }
     }
 
-    private void loadCOItemTable() {
-        purchaseList = FXCollections.observableArrayList();
+    private void loadItemTable() {
+        obList = FXCollections.observableArrayList();
         try {
-            List<AdvanceSearchTm> list = orderBO.getOrderItems(orderTm.getOrderId());
+            list = orderBO.getOrderItems(orderTm.getOrderId());
             if (!list.isEmpty()) {
-                purchaseList.addAll(list);
-                tblAdSearch.setItems(purchaseList);
+                obList.addAll(list);
+                tblAdSearch.setItems(obList);
             }else {
-                new Alert(Alert.AlertType.ERROR, "Missing Item Details! May Be Item Deleted!").show();
+                new Alert(Alert.AlertType.WARNING, "Missing Item Details! May Be Item Deleted!").show();
             }
 
         } catch (SQLException | ClassNotFoundException e) {
@@ -88,15 +91,11 @@ public class ViewCompletedOrderFormController {
         lblPaymentType.setText(String.valueOf(orderTm.getPaymentType()));
         lblNetTotal.setText(String.valueOf(orderTm.getTotalPayment()));
 
-        try {
-            CustomerDTO customer = orderBO.getCustomer(orderTm.getCusId());
-            if (customer != null) {
-                lblCusName.setText(customer.getName());
-                lblCusNum.setText(customer.getContact());
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        lblCusName.setText(customer.getName());
+        lblCusNum.setText(customer.getContact());
+
+        if (customer.getEmail() == null) btnSendBill.setVisible(false);
+
     }
 
     private void setCellValueFactory() {
@@ -120,8 +119,7 @@ public class ViewCompletedOrderFormController {
         if (type.orElse(no) == yes) {
             String id = lblOrderId.getText();
             try {
-                boolean isRefunded = orderBO.refundOrder(id, purchaseList);
-                if (isRefunded) {
+                if (orderBO.refundOrder(id, list)) {
                     new Alert(Alert.AlertType.INFORMATION, "Refunded Successfully!").show();
                     Stage stage = (Stage) rootNode.getScene().getWindow();
                     stage.close();

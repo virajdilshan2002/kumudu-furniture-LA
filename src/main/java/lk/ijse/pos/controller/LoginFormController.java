@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.pos.bo.BOFactory;
 import lk.ijse.pos.bo.custom.UserBO;
+import lk.ijse.pos.util.NavigateTo;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -112,28 +114,19 @@ public class LoginFormController {
                 }
             }
         }catch (SQLException | ClassNotFoundException e){
-            /*new Alert(Alert.AlertType.ERROR, "OOPS! something went wrong!").show();*/
+            new Alert(Alert.AlertType.ERROR, "OOPS! something went wrong!").show();
             e.printStackTrace();
         }
     }
 
     private void navigateToDashboard() throws IOException {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/lk/ijse/pos/view/MainForm.fxml"));
-        AnchorPane rootNode = loader.load();
-        Scene scene = new Scene(rootNode);
-
-        Stage stage = (Stage) this.rootNode.getScene().getWindow();
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        /*stage.setTitle("KUMUDU FURNITURE");*/
+        String path = "/lk/ijse/pos/view/MainForm.fxml";
+        NavigateTo.parent(path, this.rootNode);
     }
 
     public void linkSignUpClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/SignUpForm.fxml"));
-
-        this.leftNode.getChildren().clear();
-        this.leftNode.getChildren().add(rootNode);
-
+        String path = "/lk/ijse/pos/view/SignUpForm.fxml";
+        NavigateTo.children(path, this.leftNode);
         setSignUpBackgroundImage();
     }
 
@@ -146,11 +139,8 @@ public class LoginFormController {
     }
 
     public void linkForgotPwClickOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/ForgotPasswordForm.fxml"));
-
-        this.leftNode.getChildren().clear();
-        this.leftNode.getChildren().add(rootNode);
-
+        String path = "/lk/ijse/pos/view/ForgotPasswordForm.fxml";
+        NavigateTo.children(path, this.leftNode);
         setForgotPwBackgroundImage();
     }
 

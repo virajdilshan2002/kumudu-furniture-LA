@@ -38,7 +38,7 @@ public class FurnitureDAOImpl implements FurnitureDAO {
 
     @Override
     public boolean add(Furniture item) throws SQLException, ClassNotFoundException {
-        return SQLUtil.addFurniture("INSERT INTO furniture VALUES (?, ?, ?, ?, ?, ?, ?)", item);
+        return SQLUtil.addFurnitureItem("INSERT INTO furniture VALUES (?, ?, ?, ?, ?, ?, ?)", item);
     }
 
     @Override
@@ -130,7 +130,7 @@ public class FurnitureDAOImpl implements FurnitureDAO {
 
     @Override
     public boolean updateImage(File file, String furnId) throws SQLException, ClassNotFoundException {
-        return SQLUtil.updateImageFile("UPDATE furniture SET imageFile = ? WHERE furnId = ?",
+        return SQLUtil.updateItemImageFile("UPDATE furniture SET imageFile = ? WHERE furnId = ?",
                 file,
                 furnId
         );

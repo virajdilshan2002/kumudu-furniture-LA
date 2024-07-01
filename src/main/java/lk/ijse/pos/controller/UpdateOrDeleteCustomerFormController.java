@@ -94,22 +94,17 @@ public class UpdateOrDeleteCustomerFormController {
         String email = txtEmail.getText();
         String contact = txtContact.getText();
 
-        boolean isEmpty = checkDetails(name, address, contact);
-
-        if (!isEmpty){
-            boolean isValid = isValid();
-            if (isValid) {
+        if (!isEmpty()){
+            if (isValid()) {
+                if (email.isEmpty()) email = null;
                 ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
                 ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
                 Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure To Update This Customer?", yes, no).showAndWait();
                 if (result.orElse(no) == yes) {
-                    if (email.isEmpty() || email == null) email = null;
                     CustomerDTO customer = new CustomerDTO(id,name,address, email, contact);
-
                     try {
-                        boolean isUpdated = customerBo.update(customer);
-                        if (isUpdated) {
+                        if (customerBo.update(customer)) {
                             new Alert(Alert.AlertType.INFORMATION,"Customer Updated!").show();
                             clearTextFields();
                         }
@@ -121,14 +116,14 @@ public class UpdateOrDeleteCustomerFormController {
         }
     }
 
-    public boolean checkDetails(String name, String address, String contact) {
-        if (name.isEmpty()) {
+    public boolean isEmpty() {
+        if (txtName.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Customer Name cannot be empty").show();
             return true;
-        } else if (address.isEmpty()) {
+        } else if (txtAddress.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Customer Address cannot be empty").show();
             return true;
-        } else if (contact.isEmpty()) {
+        } else if (txtContact.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Customer Contact cannot be empty").show();
             return true;
         }
@@ -143,7 +138,7 @@ public class UpdateOrDeleteCustomerFormController {
             imgContactOk.setVisible(false);
             imgContactError.setVisible(true);
             return false;
-        } else if(txtEmail.getText() == null) {
+        } else if(txtEmail.getText().isEmpty()) {
             imgEmailError.setVisible(false);
             imgEmailOk.setVisible(false);
             imgContactOk.setVisible(true);

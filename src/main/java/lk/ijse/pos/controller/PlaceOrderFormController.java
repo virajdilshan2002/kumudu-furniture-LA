@@ -26,6 +26,7 @@ import lk.ijse.pos.dto.OrderDTO;
 import lk.ijse.pos.dto.OrderDetailDTO;
 
 import lk.ijse.pos.util.Mail;
+import lk.ijse.pos.util.NavigateTo;
 import lk.ijse.pos.util.PaymentType;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.view.tdm.CartTm;
@@ -39,7 +40,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static lk.ijse.pos.util.GenerateBill.getPDFFile;
-import static lk.ijse.pos.util.loadFXML.newStage;
+import static lk.ijse.pos.util.NavigateTo.newStage;
 
 public class PlaceOrderFormController {
 
@@ -257,7 +258,7 @@ public class PlaceOrderFormController {
     }
 
     public void btnAddNewCustomerClickOnAction(ActionEvent actionEvent) throws IOException {
-        newStage("/lk/ijse/pos/view/AddCustomerForm.fxml", "Add New Customer Form");
+        NavigateTo.newStage("/lk/ijse/pos/view/AddCustomerForm.fxml", "Add New Customer Form");
     }
 
     public void btnAddToCartClickOnAction(ActionEvent actionEvent) {

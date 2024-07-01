@@ -42,7 +42,6 @@ public class EmailVerifier {
                         return false;
                     }
                 } else {
-                    System.out.println("Failed to verify email. HTTP Error Code: " + responseCode);
                     new Alert(Alert.AlertType.ERROR, "Failed to verify email. HTTP Error Code: " + responseCode).show();
                     return false;
                 }
