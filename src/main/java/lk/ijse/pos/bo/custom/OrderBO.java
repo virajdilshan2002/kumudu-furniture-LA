@@ -18,8 +18,6 @@ public interface OrderBO extends SuperBO {
 
     boolean isExistsOrder(String id) throws SQLException, ClassNotFoundException;
 
-    boolean saveOrder(Order order) throws SQLException, ClassNotFoundException;
-
     List<OrderDTO> getCompletedOrdersList() throws SQLException, ClassNotFoundException;
 
     List<OrderDTO> getToBePaidOrders() throws SQLException, ClassNotFoundException;

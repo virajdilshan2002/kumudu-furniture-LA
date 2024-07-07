@@ -39,11 +39,6 @@ public class CustomerBoImpl implements CustomerBo {
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
-        return customerDAO.exist(id);
-    }
-
-    @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
         return customerDAO.generateNewID();
     }
@@ -51,12 +46,6 @@ public class CustomerBoImpl implements CustomerBo {
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
         return customerDAO.delete(id);
-    }
-
-    @Override
-    public CustomerDTO searchByContact(String id) throws SQLException, ClassNotFoundException {
-        Customer customer = customerDAO.searchByContact(id);
-        return new CustomerDTO(customer.getId(), customer.getName(), customer.getAddress(), customer.getEmail(), customer.getContact());
     }
 
     @Override

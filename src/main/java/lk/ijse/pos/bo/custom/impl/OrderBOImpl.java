@@ -34,11 +34,6 @@ public class OrderBOImpl implements OrderBO {
     }
 
     @Override
-    public boolean saveOrder(Order order) throws SQLException, ClassNotFoundException {
-        return orderDAO.save(order);
-    }
-
-    @Override
     public List<OrderDTO> getCompletedOrdersList() throws SQLException, ClassNotFoundException {
         List<Order> orders = orderDAO.getCompletedOrdersList();
 

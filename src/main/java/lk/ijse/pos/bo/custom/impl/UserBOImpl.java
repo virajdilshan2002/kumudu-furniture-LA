@@ -14,7 +14,13 @@ public class UserBOImpl implements UserBO {
     UserDAO userDAO = (UserDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.USER);
 
     @Override
-    public boolean add(User user) throws SQLException, ClassNotFoundException {
+    public boolean add(UserDTO userDTO) throws SQLException, ClassNotFoundException {
+        User user = new User(
+                userDTO.getUserName(),
+                userDTO.getFullName(),
+                userDTO.getEmail(),
+                userDTO.getPassword()
+        );
         return userDAO.add(user);
     }
 

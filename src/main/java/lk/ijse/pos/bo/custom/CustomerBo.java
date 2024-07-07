@@ -13,12 +13,9 @@ public interface CustomerBo extends SuperBO {
     boolean add(CustomerDTO dto) throws SQLException, ClassNotFoundException;
 
     boolean update(CustomerDTO dto) throws SQLException, ClassNotFoundException;
-    boolean exist(String id) throws SQLException, ClassNotFoundException;
 
     String generateNewID() throws SQLException, ClassNotFoundException;
 
     boolean delete(String id) throws SQLException, ClassNotFoundException;
-
-    CustomerDTO searchByContact(String id) throws SQLException, ClassNotFoundException;
     int getCustomersCount() throws SQLException, ClassNotFoundException;
 }

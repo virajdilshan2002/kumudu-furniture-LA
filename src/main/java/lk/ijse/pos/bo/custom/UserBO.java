@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface UserBO extends SuperBO {
-    boolean add(User user) throws SQLException, ClassNotFoundException;
+    boolean add(UserDTO user) throws SQLException, ClassNotFoundException;
     UserDTO isUserExist(String userName) throws SQLException, ClassNotFoundException;
 
     boolean updatePassword(String userName, String newPassword) throws SQLException, ClassNotFoundException;

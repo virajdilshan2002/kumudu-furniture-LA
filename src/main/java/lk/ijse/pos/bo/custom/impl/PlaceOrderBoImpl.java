@@ -42,31 +42,6 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
     }
 
     @Override
-    public FurnitureDTO searchItem(String code) throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    @Override
-    public boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public boolean existCustomer(String code) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public String generateOrderID() throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    @Override
-    public ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    @Override
     public List<FurnitureDTO> getAllFurnitureItems() throws SQLException, ClassNotFoundException {
         List<Furniture> furnitures = furnitureDAO.getAll();
 
@@ -83,16 +58,6 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
             ));
         }
         return furnitureDTOS;
-    }
-
-    @Override
-    public boolean placeOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
-        return false;
-    }
-
-    @Override
-    public FurnitureDTO findItem(String code) {
-        return null;
     }
 
     @Override

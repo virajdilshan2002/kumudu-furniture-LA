@@ -72,11 +72,6 @@ public class FurnitureBoImpl implements FurnitureBo {
     }
 
     @Override
-    public boolean exist(String code) throws SQLException, ClassNotFoundException {
-        return furnitureDAO.exist(code);
-    }
-
-    @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
         return furnitureDAO.generateNewID();
     }
