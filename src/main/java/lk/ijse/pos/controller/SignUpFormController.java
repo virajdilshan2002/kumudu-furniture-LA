@@ -14,6 +14,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import lk.ijse.pos.bo.BOFactory;
 import lk.ijse.pos.bo.custom.UserBO;
+import lk.ijse.pos.dto.UserDTO;
 import lk.ijse.pos.entity.User;
 import lk.ijse.pos.util.Regex;
 import lk.ijse.pos.util.TextField;
@@ -48,7 +49,7 @@ public class SignUpFormController {
 
         if (isValid()) {
             try {
-                boolean isSaved = userBo.add(new User(userName,
+                boolean isSaved = userBo.add(new UserDTO(userName,
                         fullName,
                         email,
                         password)

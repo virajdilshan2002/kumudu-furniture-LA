@@ -109,7 +109,7 @@ public class PlaceOrderBoImpl implements PlaceOrderBo {
             connection = DBConnection.getDbConnection().getConnection();
             connection.setAutoCommit(false);
 
-            if (orderDAO.save(order)) {
+            if (orderDAO.add(order)) {
                 System.out.println("Order Query Executed To Pool!");
 
                 if (orderDetailDAO.save(entityList)) {

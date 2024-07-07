@@ -74,7 +74,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public boolean save(Order order) throws SQLException, ClassNotFoundException {
+    public boolean add(Order order) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("INSERT INTO orders VALUES (?,?,?,?,?,?)",
                 order.getOrderId(),
                 order.getCusId(),
@@ -177,11 +177,6 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public List<Order> getAll() throws SQLException, ClassNotFoundException {
         return null;
-    }
-
-    @Override
-    public boolean add(Order entity) throws SQLException, ClassNotFoundException {
-        return false;
     }
 
     @Override

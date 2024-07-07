@@ -20,8 +20,6 @@ public interface OrderDAO extends CrudDAO<Order> {
 
     boolean isExistsOrder(String id) throws SQLException, ClassNotFoundException;
 
-    boolean save(Order order) throws SQLException, ClassNotFoundException;
-
     List<Order> getCompletedOrdersList() throws SQLException, ClassNotFoundException;
 
     List<Order> getToBePaidOrders() throws SQLException, ClassNotFoundException;
