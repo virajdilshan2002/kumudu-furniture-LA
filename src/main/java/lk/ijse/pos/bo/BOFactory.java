@@ -10,12 +10,15 @@ public class BOFactory implements SuperBO{
     private static PlaceOrderBoImpl placeOrderBo;
     private static UserBOImpl userBO;
     private static OrderBOImpl orderBO;
+    private static DashboardBoImpl dashboardBo;
+
     private BOFactory(){
         userBO = new UserBOImpl();
         customerBo = new CustomerBoImpl();
         furnitureBo = new FurnitureBoImpl();
         placeOrderBo = new PlaceOrderBoImpl();
         orderBO = new OrderBOImpl();
+        dashboardBo = new DashboardBoImpl();
     }
 
     public static BOFactory getInstance(){
@@ -23,7 +26,7 @@ public class BOFactory implements SuperBO{
     }
 
     public enum BOType {
-        USER,CUSTOMER,FURNITURE,PLACEORDER,ORDER
+        USER,CUSTOMER,FURNITURE,PLACEORDER,ORDER,DASHBOARD
     }
 
     public SuperBO getBO(BOType type){
@@ -33,6 +36,7 @@ public class BOFactory implements SuperBO{
             case CUSTOMER -> customerBo;
             case FURNITURE -> furnitureBo;
             case PLACEORDER -> placeOrderBo;
+            case DASHBOARD -> dashboardBo;
         };
     }
 

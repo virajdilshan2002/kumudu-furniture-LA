@@ -13,6 +13,7 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import lk.ijse.pos.bo.BOFactory;
 import lk.ijse.pos.bo.custom.CustomerBo;
+import lk.ijse.pos.bo.custom.DashboardBO;
 import lk.ijse.pos.bo.custom.FurnitureBo;
 import lk.ijse.pos.bo.custom.OrderBO;
 import lk.ijse.pos.db.DBConnection;
@@ -42,9 +43,7 @@ public class DashboardFormController {
     public Label lblDayStatus;
     public JFXTextField txtSearchReceipt;
 
-    FurnitureBo furnitureBo = (FurnitureBo) BOFactory.getInstance().getBO(BOFactory.BOType.FURNITURE);
-    CustomerBo customerBo = (CustomerBo) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
-    OrderBO orderBo = (OrderBO) BOFactory.getInstance().getBO(BOFactory.BOType.ORDER);
+    DashboardBO dashboardBO = (DashboardBO) BOFactory.getInstance().getBO(BOFactory.BOType.DASHBOARD);
 
     public void initialize() {
         setTime();
@@ -58,7 +57,7 @@ public class DashboardFormController {
 
     private void setCompletedOrdersCount() {
         try {
-            int count = orderBo.getCompletedOrdersCount();
+            int count = dashboardBO.getCompletedOrdersCount();
             lblCompletedOrdersCount.setText(String.valueOf(count));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -68,7 +67,7 @@ public class DashboardFormController {
 
     private void setToBePaidOrdersCount() {
         try {
-            int count = orderBo.getToBePaidOrdersCount();
+            int count = dashboardBO.getToBePaidOrdersCount();
             lblToBePaidOrdersCount.setText(String.valueOf(count));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -110,7 +109,7 @@ public class DashboardFormController {
 
     private void setFurnitureCount() {
         try {
-            int count = furnitureBo.getFurnitureCount();
+            int count = dashboardBO.getFurnitureCount();
             lblFurnCount.setText(String.valueOf(count));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -119,7 +118,7 @@ public class DashboardFormController {
 
     private void setCustomersCount() {
         try {
-            int count = customerBo.getCustomersCount();
+            int count = dashboardBO.getCustomersCount();
             lblCustomersCount.setText(String.valueOf(count));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -139,7 +138,7 @@ public class DashboardFormController {
     public void btnGenerateClickOnAction(ActionEvent actionEvent) {
         String id = txtSearchReceipt.getText();
         try {
-            boolean isFound = orderBo.isExistsOrder(id);
+            boolean isFound = dashboardBO.isExistsOrder(id);
             if (isFound) {
                 txtSearchReceipt.setFocusColor(Paint.valueOf("Green"));
                 txtSearchReceipt.setUnFocusColor(Paint.valueOf("Green"));
@@ -161,7 +160,7 @@ public class DashboardFormController {
     public void txtSearchReceiptOnKeyRelesedAction(KeyEvent keyEvent) {
         String id = txtSearchReceipt.getText();
         try {
-            boolean isFound = orderBo.isExistsOrder(id);
+            boolean isFound = dashboardBO.isExistsOrder(id);
             if (isFound) {
                 txtSearchReceipt.setFocusColor(Paint.valueOf("Green"));
                 txtSearchReceipt.setUnFocusColor(Paint.valueOf("Green"));
