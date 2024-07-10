@@ -25,9 +25,5 @@ public interface OrderBO extends SuperBO {
     OrderDTO getOrder(String orderId) throws SQLException, ClassNotFoundException;
 
     CustomerDTO getCustomer(String id) throws SQLException, ClassNotFoundException;
-
-    int getToBePaidOrdersCount() throws SQLException, ClassNotFoundException;
-
-    int getCompletedOrdersCount() throws SQLException, ClassNotFoundException;
     List<AdvanceSearchTm> getOrderItems(String id) throws SQLException, ClassNotFoundException;
 }

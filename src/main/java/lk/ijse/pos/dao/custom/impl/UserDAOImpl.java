@@ -33,7 +33,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean exist(String userName) throws SQLException, ClassNotFoundException {
+    public boolean isExists(String userName) throws SQLException, ClassNotFoundException {
         return false;
     }
 

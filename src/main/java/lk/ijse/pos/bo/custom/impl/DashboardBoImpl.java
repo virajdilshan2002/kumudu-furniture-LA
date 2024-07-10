@@ -35,6 +35,6 @@ public class DashboardBoImpl implements DashboardBO {
 
     @Override
     public boolean isExistsOrder(String id) throws SQLException, ClassNotFoundException {
-        return orderDAO.isExistsOrder(id);
+        return orderDAO.isExists(id);
     }
 }

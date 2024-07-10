@@ -65,7 +65,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public boolean isExistsOrder(String id) throws SQLException, ClassNotFoundException {
+    public boolean isExists(String id) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM orders WHERE orderId = ?", id);
         if (resultSet.next()) {
             return true;
@@ -181,11 +181,6 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public boolean update(Order entity) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
         return false;
     }
 

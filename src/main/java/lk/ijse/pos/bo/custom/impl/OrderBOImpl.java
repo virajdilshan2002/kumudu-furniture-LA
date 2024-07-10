@@ -30,7 +30,7 @@ public class OrderBOImpl implements OrderBO {
 
     @Override
     public boolean isExistsOrder(String id) throws SQLException, ClassNotFoundException {
-        return orderDAO.isExistsOrder(id);
+        return orderDAO.isExists(id);
     }
 
     @Override
@@ -88,16 +88,6 @@ public class OrderBOImpl implements OrderBO {
                 customer.getEmail(),
                 customer.getContact()
         );
-    }
-
-    @Override
-    public int getToBePaidOrdersCount() throws SQLException, ClassNotFoundException {
-        return orderDAO.getToBePaidOrdersCount();
-    }
-
-    @Override
-    public int getCompletedOrdersCount() throws SQLException, ClassNotFoundException {
-        return orderDAO.getCompletedOrdersCount();
     }
 
     @Override

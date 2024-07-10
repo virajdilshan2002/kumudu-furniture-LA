@@ -53,7 +53,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean isExists(String id) throws SQLException, ClassNotFoundException {
         return false;
     }
 

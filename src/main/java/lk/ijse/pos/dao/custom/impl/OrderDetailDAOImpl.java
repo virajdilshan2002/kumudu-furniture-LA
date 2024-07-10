@@ -72,7 +72,7 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
     }
 
     @Override
-    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+    public boolean isExists(String id) throws SQLException, ClassNotFoundException {
         return false;
     }
 
